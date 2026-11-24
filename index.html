@@ -9,29 +9,22 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Motus">
 <title>Motus — мяч для кисти</title>
-<link id="ati" rel="apple-touch-icon">
-<link id="fav" rel="icon">
-<link id="mani" rel="manifest">
+<link id="ati" rel="apple-touch-icon"><link id="fav" rel="icon"><link id="mani" rel="manifest">
 <style>
 :root{
-  --paper:#F6F4F0; --card:#FFFFFF; --ink:#2B2F2E; --sub:#7C8580; --faint:#A9B1AB;
-  --line:#E8E4DC; --line2:#DDD8CE;
-  --sage:#6F8F82; --sage-deep:#4E6B5F; --sage-soft:#EAF0EC; --sage-mid:#9DB8AC;
-  --blue:#7C93A8; --blue-soft:#EDF1F4;
-  --amber:#B98F4E; --amber-soft:#F6EFE2;
-  --clay:#C07A6B; --clay-soft:#F6EAE6;
+  --paper:#F6F4F0;--card:#FFFFFF;--ink:#2B2F2E;--sub:#7C8580;--faint:#A9B1AB;
+  --line:#E8E4DC;--line2:#DDD8CE;
+  --sage:#6F8F82;--sage-deep:#4E6B5F;--sage-soft:#EAF0EC;--sage-mid:#9DB8AC;--sage-ghost:#C9D6CE;
+  --blue:#7C93A8;--blue-soft:#EDF1F4;--amber:#B98F4E;--amber-soft:#F6EFE2;
+  --clay:#C07A6B;--clay-soft:#F6EAE6;
   --shadow:0 1px 2px rgba(43,47,46,.04),0 8px 24px rgba(43,47,46,.06);
-  --r:20px; --tab-h:64px;
-  --ease:cubic-bezier(.32,.72,.28,1);
+  --r:20px;--tab-h:64px;--ease:cubic-bezier(.32,.72,.28,1);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{height:100%}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',Roboto,sans-serif;
-  background:var(--paper);color:var(--ink);min-height:100dvh;
-  -webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
-  overscroll-behavior-y:none;
-}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',Roboto,sans-serif;
+  background:var(--paper);color:var(--ink);min-height:100dvh;-webkit-font-smoothing:antialiased;
+  font-variant-numeric:tabular-nums;overscroll-behavior-y:none}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(600px 340px at 50% -80px,rgba(111,143,130,.10),transparent 70%)}
 body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.022;
@@ -39,19 +32,14 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 input,textarea,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--sage);outline-offset:2px;border-radius:8px}
-::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:8px}
 ::-webkit-scrollbar-thumb:hover{background:var(--sage-mid)}
 *{scrollbar-width:thin;scrollbar-color:var(--line2) transparent}
-
 #app{max-width:480px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;position:relative}
-@media(min-width:520px){
-  body{background:#EFEBE4}
-  #app{background:var(--paper);box-shadow:0 0 0 1px var(--line),0 24px 80px rgba(43,47,46,.10);min-height:100dvh}
-}
-
-/* ---------- верхняя панель ---------- */
+@media(min-width:520px){body{background:#EFEBE4}
+  #app{background:var(--paper);box-shadow:0 0 0 1px var(--line),0 24px 80px rgba(43,47,46,.10)}}
 #top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;
   padding:calc(10px + env(safe-area-inset-top)) 18px 10px;
   background:rgba(246,244,240,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
@@ -71,8 +59,6 @@ input,textarea,select{font:inherit;color:inherit}
 #muteBtn:active{transform:scale(.92)}
 #muteBtn[aria-pressed="false"]{color:var(--faint)}
 #muteBtn svg{width:17px;height:17px}
-
-/* ---------- контент и вкладки ---------- */
 main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bottom))}
 .view{display:none;animation:vin .32s var(--ease)}
 .view.on{display:block}
@@ -84,19 +70,14 @@ main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bot
   border-radius:14px;color:var(--faint);font-size:10.5px;font-weight:600;transition:.2s}
 #tabbar button svg{width:22px;height:22px}
 #tabbar button.on{color:var(--sage-deep)}
-#tabbar button.on svg{transform:translateY(-1px)}
 #tabbar button:active{transform:scale(.94)}
-
 .hello{margin-bottom:16px}
 .hello .d{font-size:13px;color:var(--sub);font-weight:500}
 .hello h2{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-top:2px}
-
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden}
 .card .pad{padding:18px}
-.card-t{font-size:13px;font-weight:600;color:var(--sub);letter-spacing:.01em;display:flex;align-items:center;gap:8px}
+.card-t{font-size:13px;font-weight:600;color:var(--sub);display:flex;align-items:center;gap:8px}
 .card-t .r{margin-left:auto;font-weight:500;color:var(--faint);font-size:12px}
-
-/* ---------- живое кольцо ---------- */
 #ringCard .pad{display:flex;flex-direction:column;align-items:center;padding:22px 18px 18px}
 #ringWrap{position:relative;width:min(250px,68vw);aspect-ratio:1;touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer}
 #ringWrap svg{width:100%;height:100%;display:block;overflow:visible}
@@ -104,7 +85,7 @@ main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bot
 @keyframes breath{50%{transform:scale(1.012)}}
 #ringBreath{transform-origin:50% 50%}
 .ring-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center}
-#livePct{font-size:56px;font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+#livePct{font-size:56px;font-weight:700;letter-spacing:-.03em;line-height:1}
 #livePct small{font-size:24px;color:var(--faint);font-weight:600}
 .ring-c .l{font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--faint);margin-top:6px;text-transform:uppercase}
 #liveDelta{font-size:13px;color:var(--sage-deep);font-weight:600;margin-top:7px}
@@ -113,9 +94,8 @@ main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bot
 .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:99px;font-size:11.5px;font-weight:600;background:var(--sage-soft);color:var(--sage-deep)}
 .pill.b{background:var(--blue-soft);color:var(--blue)}
 .pill.a{background:var(--amber-soft);color:var(--amber)}
+.pill.c{background:var(--clay-soft);color:var(--clay)}
 .pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
-
-/* ---------- сегодня ---------- */
 .today-nums{display:flex;align-items:baseline;gap:8px;margin:10px 0 4px}
 #todayReps{font-size:44px;font-weight:700;letter-spacing:-.03em;color:var(--sage-deep)}
 .today-nums .of{font-size:15px;color:var(--sub);font-weight:500}
@@ -134,10 +114,9 @@ main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bot
 .btn.ghost{background:transparent;color:var(--sage-deep)}
 .btn.danger{background:var(--clay-soft);color:var(--clay)}
 .btn.sm{padding:10px 14px;font-size:13.5px;width:auto;border-radius:12px}
+.btn:disabled{opacity:.5;pointer-events:none}
 .quick{display:flex;gap:8px;margin-top:12px}
 .quick .btn{flex:1}
-
-/* ---------- методики ---------- */
 .proto{display:flex;align-items:center;gap:14px;width:100%;padding:16px 18px;text-align:left;transition:.15s;border-bottom:1px solid var(--line)}
 .proto:last-child{border-bottom:none}
 .proto:active{background:var(--sage-soft)}
@@ -148,8 +127,6 @@ main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bot
 .proto .tx span{font-size:12.5px;color:var(--sub);display:block;margin-top:2px;line-height:1.4}
 .proto .chev{color:var(--faint);flex:none}
 .proto .meta{font-size:11px;color:var(--sage-deep);font-weight:600;background:var(--sage-soft);padding:3px 8px;border-radius:8px;margin-top:5px;display:inline-block}
-
-/* ---------- история ---------- */
 #weekChart{width:100%;height:150px;display:block}
 .sum-row{display:flex;gap:8px;margin-bottom:14px}
 .sum{flex:1;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 10px;text-align:center;box-shadow:var(--shadow)}
@@ -159,7 +136,7 @@ main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bot
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none;padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:600;background:var(--card);border:1px solid var(--line);color:var(--sub);transition:.15s}
 .chip.on{background:var(--sage-deep);border-color:var(--sage-deep);color:#fff}
-.day-h{font-size:12px;font-weight:600;color:var(--faint);margin:14px 4px 8px;letter-spacing:.02em}
+.day-h{font-size:12px;font-weight:600;color:var(--faint);margin:14px 4px 8px}
 .sess{display:flex;align-items:center;gap:12px;width:100%;padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);transition:.15s}
 .sess:last-child{border-bottom:none}
 .sess:active{background:var(--sage-soft)}
@@ -172,8 +149,6 @@ main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bot
 .sess .num b{font-size:15px;font-weight:700;color:var(--sage-deep)}
 .sess .num span{display:block;font-size:10.5px;color:var(--faint)}
 .empty{padding:34px 18px;text-align:center;color:var(--sub);font-size:13.5px;line-height:1.6}
-
-/* ---------- настройки ---------- */
 .group{margin-bottom:18px}
 .group-t{font-size:12px;font-weight:600;color:var(--faint);text-transform:uppercase;letter-spacing:.08em;margin:0 6px 8px}
 .rows{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
@@ -195,8 +170,8 @@ main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bot
 .stepper{display:flex;align-items:center;gap:2px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:2px;flex:none}
 .stepper button{width:32px;height:30px;border-radius:9px;font-size:17px;font-weight:600;color:var(--sage-deep);transition:.12s}
 .stepper button:active{background:var(--sage-soft)}
-.stepper .v{min-width:44px;text-align:center;font-size:14.5px;font-weight:600}
-input[type=time]{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:14px;font-weight:600;color:var(--ink)}
+.stepper .v{min-width:52px;text-align:center;font-size:14.5px;font-weight:600}
+input[type=time]{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:14px;font-weight:600}
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:26px;background:transparent}
 input[type=range]::-webkit-slider-runnable-track{height:5px;border-radius:3px;background:var(--line2)}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;margin-top:-9.5px;background:#fff;border:1px solid var(--line2);box-shadow:0 1px 5px rgba(43,47,46,.2)}
@@ -204,28 +179,58 @@ input[type=range]::-moz-range-track{height:5px;border-radius:3px;background:var(
 input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:1px solid var(--line2);box-shadow:0 1px 5px rgba(43,47,46,.2)}
 .note{font-size:12px;color:var(--sub);line-height:1.55;padding:10px 16px 14px}
 .note b{color:var(--ink)}
-
-/* ---------- тренировка ---------- */
+/* батарея */
+.batwrap{display:flex;align-items:center;gap:12px;width:100%}
+.batglyph{position:relative;width:42px;height:22px;border:2px solid var(--sage-mid);border-radius:6px;flex:none;padding:2px}
+.batglyph::after{content:"";position:absolute;right:-5px;top:6px;width:3px;height:8px;border-radius:0 2px 2px 0;background:var(--sage-mid)}
+.batglyph i{display:block;height:100%;border-radius:3px;background:var(--sage);transition:width .5s var(--ease),background .3s}
+.batglyph.low{border-color:var(--amber)}.batglyph.low::after{background:var(--amber)}.batglyph.low i{background:var(--amber)}
+.batglyph.crit{border-color:var(--clay)}.batglyph.crit::after{background:var(--clay)}.batglyph.crit i{background:var(--clay)}
+.batglyph.chg i{background:var(--blue)}
+.batinfo{flex:1;min-width:0}
+.batinfo .top{display:flex;align-items:baseline;gap:8px}
+.batinfo .p{font-size:22px;font-weight:700;color:var(--sage-deep);letter-spacing:-.02em}
+.batinfo .v{font-size:12.5px;color:var(--sub);font-weight:500}
+.batinfo .est{font-size:12px;color:var(--sub);margin-top:2px}
+.battag{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:8px;background:var(--blue-soft);color:var(--blue)}
+/* тренировка */
 #wo{position:fixed;inset:0;z-index:50;background:var(--paper);display:none;flex-direction:column;max-width:480px;margin:0 auto}
 #wo.on{display:flex;animation:vin .3s var(--ease)}
 #wo header{display:flex;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top)) 18px 12px;border-bottom:1px solid var(--line)}
 #woName{font-size:15px;font-weight:700}
 #woRep{margin-left:auto;font-size:13px;font-weight:600;color:var(--sage-deep);background:var(--sage-soft);padding:5px 11px;border-radius:99px}
 #woClose{width:32px;height:32px;border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--sub);font-size:14px}
-#woBody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;gap:6px;overflow-y:auto}
-#woPhase{font-size:22px;font-weight:700;letter-spacing:-.01em;text-align:center;min-height:28px;transition:.2s}
-#woSub{font-size:13.5px;color:var(--sub);text-align:center;min-height:20px}
-#woRingWrap{position:relative;width:min(280px,72vw);aspect-ratio:1;margin:12px 0;touch-action:none;user-select:none;-webkit-user-select:none}
-#woRingWrap svg{width:100%;height:100%;overflow:visible}
-#woCount{font-size:46px;font-weight:700;letter-spacing:-.02em;line-height:1}
-#woCount small{font-size:20px;color:var(--faint);font-weight:600}
-#woRingWrap .ring-c .l{margin-top:4px}
-#woElapsed{font-size:13px;color:var(--sub);font-weight:600;margin-top:2px}
-#woQuality{width:min(280px,72vw);height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:10px}
+#woBody{flex:1;display:flex;flex-direction:column;align-items:center;padding:14px 18px 8px;gap:4px;overflow-y:auto}
+#woPhase{font-size:21px;font-weight:700;text-align:center;min-height:26px}
+#woSub{font-size:13px;color:var(--sub);text-align:center;min-height:18px}
+#woRingWrap{position:relative;width:min(268px,70vw);aspect-ratio:1;margin:8px 0 4px;touch-action:none;user-select:none;-webkit-user-select:none}
+#woRingWrap svg{width:100%;height:100%;overflow:visible;display:block}
+#woYou{font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1}
+#woYou small{font-size:20px;color:var(--faint);font-weight:600}
+#woTargetLabel{font-size:12.5px;font-weight:600;color:var(--sub);margin-top:5px}
+#woCount{font-size:17px;font-weight:700;color:var(--sage-deep);margin-top:3px}
+#woCount small{font-size:12px;color:var(--faint);font-weight:600}
+.readout{display:flex;gap:8px;width:min(300px,80vw);margin-top:2px}
+.ro{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 6px;text-align:center}
+.ro .k{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.ro .v{font-size:17px;font-weight:700;margin-top:2px}
+.ro.you .v{color:var(--sage-deep)}
+.ro.tgt .v{color:var(--sub)}
+.ro.dev .v{color:var(--sage)}
+.ro.dev.far .v{color:var(--amber)}
+.ro.dev.hit .v{color:var(--sage-deep)}
+#woTrace{width:min(300px,80vw);height:84px;display:block;margin-top:8px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.trace-legend{display:flex;gap:14px;font-size:10.5px;color:var(--sub);font-weight:600;margin-top:6px}
+.trace-legend span{display:flex;align-items:center;gap:5px}
+.sw{width:14px;height:3px;border-radius:2px;display:inline-block}
+.sw.you{background:var(--sage-deep)}
+.sw.tgt{background:repeating-linear-gradient(90deg,var(--sage-mid) 0 4px,transparent 4px 7px)}
+#woElapsed{font-size:12.5px;color:var(--sub);font-weight:600;margin-top:8px}
+#woQuality{width:min(300px,80vw);height:5px;border-radius:3px;background:var(--line);overflow:hidden;margin-top:6px}
 #woQuality i{display:block;height:100%;background:var(--sage);width:100%;transition:width .3s}
-#woCtrls{display:flex;gap:10px;padding:14px 18px calc(16px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+#woCtrls{display:flex;gap:10px;padding:12px 18px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
 #woCtrls .btn{flex:1}
-#woAuto{position:absolute;top:14px;right:16px;font-size:11.5px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:6px 11px;border-radius:99px}
+#woAuto{position:absolute;top:12px;right:16px;font-size:11.5px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:6px 11px;border-radius:99px;z-index:2}
 #woAuto.on{background:var(--blue);color:#fff}
 #woDone{display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
 #woDone.on{display:flex}
@@ -239,8 +244,6 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .done-grid .sum .v{font-size:23px}
 #woDone .btn{max-width:320px}
 #woDone .btn+.btn{margin-top:8px}
-
-/* ---------- шторка ---------- */
 #scrim{position:fixed;inset:0;z-index:60;background:rgba(43,47,46,.32);opacity:0;pointer-events:none;transition:.28s}
 #scrim.on{opacity:1;pointer-events:auto}
 #sheet{position:fixed;bottom:0;left:50%;transform:translate(-50%,102%);width:100%;max-width:480px;z-index:61;
@@ -249,7 +252,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 #sheet.on{transform:translate(-50%,0)}
 #sheet .grab{width:38px;height:4.5px;border-radius:3px;background:var(--line2);margin:10px auto 4px;flex:none}
 #sheetBody{overflow-y:auto;padding:10px 20px calc(22px + env(safe-area-inset-bottom))}
-#sheetBody h3{font-size:19px;font-weight:700;letter-spacing:-.01em;margin:6px 0 4px}
+#sheetBody h3{font-size:19px;font-weight:700;margin:6px 0 4px}
 #sheetBody .desc{font-size:13.5px;color:var(--sub);line-height:1.6;margin-bottom:14px}
 .param{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
 .param:last-of-type{border-bottom:none}
@@ -263,9 +266,6 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .steps-i{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.55}
 .steps-i:last-child{border-bottom:none}
 .steps-i .n{width:26px;height:26px;border-radius:50%;background:var(--sage-soft);color:var(--sage-deep);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex:none}
-.steps-i b{font-weight:600}
-
-/* ---------- тост ---------- */
 #toast{position:fixed;left:50%;bottom:calc(var(--tab-h) + 18px + env(safe-area-inset-bottom));transform:translate(-50%,20px);
   z-index:70;display:flex;align-items:center;gap:12px;background:var(--ink);color:#F6F4F0;border-radius:99px;
   padding:11px 18px;font-size:13px;font-weight:500;opacity:0;pointer-events:none;transition:.3s var(--ease);
@@ -273,13 +273,11 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 #toast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 #toastAct{color:#B9D3C6;font-weight:700;flex:none}
 #toastAct[hidden]{display:none}
-
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 <div id="app">
-
 <header id="top">
   <h1>Motus<span>·</span>мяч</h1>
   <button id="connChip"><span id="connDot"></span><span id="connText">Демо</span></button>
@@ -288,130 +286,99 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
     <svg id="icoOff" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" hidden><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" stroke="none"/><path d="m16 9.5 5 5m0-5-5 5"/></svg>
   </button>
 </header>
-
 <main>
-  <!-- ============ СЕГОДНЯ ============ -->
   <section id="v-home" class="view on">
     <div class="hello"><div class="d" id="dateLine"></div><h2>Сегодня</h2></div>
-
-    <div class="card" id="ringCard">
-      <div class="pad">
-        <div id="ringWrap" class="idle" role="button" tabindex="0" aria-label="Сжать мяч: удерживайте круг">
-          <svg viewBox="0 0 200 200">
-            <defs><linearGradient id="rg" x1="0" y1="1" x2="1" y2="0">
-              <stop offset="0" stop-color="#9DB8AC"/><stop offset="1" stop-color="#4E6B5F"/></linearGradient></defs>
-            <g id="ringBreath">
-              <circle cx="100" cy="100" r="86" fill="none" stroke="#EAF0EC" stroke-width="13"/>
-              <circle id="ringArc" cx="100" cy="100" r="86" fill="none" stroke="url(#rg)" stroke-width="13"
-                stroke-linecap="round" transform="rotate(-90 100 100)"/>
-            </g>
-          </svg>
-          <div class="ring-c">
-            <div id="livePct">0<small>%</small></div>
-            <div class="l">сжатие</div>
-            <div id="liveDelta">Δ 0.00 гПа</div>
-          </div>
-        </div>
-        <div id="ringHint">Удерживайте круг, чтобы сжать мяч.<br>Ведите пальцем вверх или вниз для плавного усилия.</div>
-        <div class="live-meta">
-          <span class="pill" id="calPill"><span class="dot"></span><span id="calText">Калибровка…</span></span>
-          <span class="pill b" id="tempPill">24.5 °C</span>
-          <span class="pill a" id="compPill">компенсация 0.00</span>
-        </div>
+    <div class="card" id="ringCard"><div class="pad">
+      <div id="ringWrap" class="idle" role="button" tabindex="0" aria-label="Сжать мяч: удерживайте круг">
+        <svg viewBox="0 0 200 200">
+          <defs><linearGradient id="rg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#9DB8AC"/><stop offset="1" stop-color="#4E6B5F"/></linearGradient></defs>
+          <g id="ringBreath">
+            <circle cx="100" cy="100" r="86" fill="none" stroke="#EAF0EC" stroke-width="13"/>
+            <circle id="ringArc" cx="100" cy="100" r="86" fill="none" stroke="url(#rg)" stroke-width="13" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+          </g>
+        </svg>
+        <div class="ring-c"><div id="livePct">0<small>%</small></div><div class="l">сжатие</div><div id="liveDelta">Δ 0.00 гПа</div></div>
       </div>
-    </div>
-
+      <div id="ringHint">Удерживайте круг, чтобы сжать мяч.</div>
+      <div class="live-meta">
+        <span class="pill" id="calPill"><span class="dot"></span><span id="calText">Калибровка…</span></span>
+        <span class="pill b" id="tempPill">24.5 °C</span>
+        <span class="pill" id="batPill">— %</span>
+      </div>
+      <button class="btn sec sm" id="zeroBtn" style="margin-top:14px;width:100%">⊙ Обнулить давление</button>
+    </div></div>
     <div class="card"><div class="pad">
       <div class="card-t">Прогресс дня<span class="r" id="goalLabel">цель 60</span></div>
       <div class="today-nums"><span id="todayReps">0</span><span class="of">сжатий</span></div>
       <div class="bar"><i id="goalBar"></i></div>
-      <div class="today-row">
-        <span>вчера <b id="yestReps">0</b></span>
-        <span>серия <b id="streak">0 дн.</b></span>
-        <span>время <b id="todayTime">0 мин</b></span>
-      </div>
+      <div class="today-row"><span>вчера <b id="yestReps">0</b></span><span>серия <b id="streak">0 дн.</b></span><span>время <b id="todayTime">0 мин</b></span></div>
       <div id="encourage"></div>
-      <div class="quick">
-        <button class="btn pri" id="quickStart">Начать тренировку</button>
-        <button class="btn sec sm" id="freeStart" style="flex:0 0 auto">Таймер</button>
-      </div>
+      <div class="quick"><button class="btn pri" id="quickStart">Начать тренировку</button><button class="btn sec sm" id="freeStart" style="flex:0 0 auto">Таймер</button></div>
     </div></div>
   </section>
-
-  <!-- ============ МЕТОДИКИ ============ -->
   <section id="v-proto" class="view">
     <div class="hello"><div class="d">Протоколы для кисти</div><h2>Методики</h2></div>
     <div class="card" id="protoList"></div>
-    <p class="note" style="padding:4px 6px">Каждую методику можно настроить перед стартом: число повторов, длительность удержания и целевое усилие. Начните с лёгких сжатий и увеличивайте нагрузку постепенно.</p>
+    <p class="note" style="padding:4px 6px">Во время занятия внешнее кольцо — цель, внутреннее — ваше усилие. На графике видно обе линии сразу: пунктир — куда идти, сплошная — где вы сейчас.</p>
   </section>
-
-  <!-- ============ ИСТОРИЯ ============ -->
   <section id="v-hist" class="view">
     <div class="hello"><div class="d">Последние 7 дней</div><h2>История</h2></div>
-    <div class="card"><div class="pad">
-      <div class="card-t">Сжатия по дням<span class="r" id="weekTotal"></span></div>
-      <canvas id="weekChart" style="margin-top:10px"></canvas>
-    </div></div>
+    <div class="card"><div class="pad"><div class="card-t">Сжатия по дням<span class="r" id="weekTotal"></span></div><canvas id="weekChart" style="margin-top:10px"></canvas></div></div>
     <div class="sum-row">
       <div class="sum"><div class="v" id="hToday">0</div><div class="k">сегодня</div></div>
       <div class="sum"><div class="v" id="hYest">0</div><div class="k">вчера</div></div>
       <div class="sum"><div class="v" id="hWeek">0</div><div class="k">за неделю</div></div>
       <div class="sum"><div class="v" id="hStreak">0</div><div class="k">серия, дн.</div></div>
     </div>
-    <div class="chips" id="histChips"></div>
-    <div id="histList"></div>
+    <div class="chips" id="histChips"></div><div id="histList"></div>
   </section>
-
-  <!-- ============ НАСТРОЙКИ ============ -->
   <section id="v-set" class="view">
     <div class="hello"><div class="d">Мяч и приложение</div><h2>Настройки</h2></div>
-
     <div class="group"><div class="group-t">Устройство</div><div class="rows">
-      <button class="row tap" id="connectRow">
-        <div class="lb"><b id="connectTitle">Подключить устройство</b><span id="connectSub">Выберите ваш мяч в списке Bluetooth</span></div>
-        <svg class="chev" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m1 1 6 6-6 6"/></svg>
-      </button>
-      <div class="row"><div class="lb"><b>Демо-режим</b><span>Виртуальный мяч, если устройства нет рядом</span></div>
-        <span class="switch"><input type="checkbox" id="demoSw" checked><i></i></span></div>
+      <button class="row tap" id="connectRow"><div class="lb"><b id="connectTitle">Подключить устройство</b><span id="connectSub">Выберите ваш мяч в списке Bluetooth</span></div>
+        <svg class="chev" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m1 1 6 6-6 6"/></svg></button>
+      <div class="row"><div class="lb"><b>Демо-режим</b><span>Виртуальный мяч без устройства</span></div><span class="switch"><input type="checkbox" id="demoSw" checked><i></i></span></div>
       <div class="row"><div class="lb"><b>Давление / температура</b><span id="devLive">—</span></div><span class="val" id="devRate">—</span></div>
     </div></div>
-
-    <div class="group"><div class="group-t">Калибровка</div><div class="rows">
-      <button class="row tap" id="calBtn">
-        <div class="lb"><b>Калибровать давление</b><span>Обнулить мяч на текущей высоте и атмосфере. Не сжимайте мяч во время калибровки.</span></div>
-        <span class="val" id="calAgo">—</span>
-      </button>
-      <div class="row"><div class="lb"><b>Компенсация температуры</b><span>Убирает нагрев от руки: воздух в мяче расширяется и давит сильнее</span></div>
-        <span class="switch"><input type="checkbox" id="tempSw" checked><i></i></span></div>
-      <div class="row"><div class="lb"><b>Авто-ноль в покое</b><span>Медленно подстраивает ноль, когда мяч не сжимают</span></div>
-        <span class="switch"><input type="checkbox" id="autoZeroSw" checked><i></i></span></div>
-      <div class="row" style="display:block"><div class="lb" style="margin-bottom:6px"><b>Чувствительность</b><span id="sensLabel">Полное сжатие = 6 гПа</span></div>
-        <input type="range" id="sensRange" min="2" max="15" step="0.5" value="6"></div>
+    <div class="group"><div class="group-t">Аккумулятор</div><div class="rows">
+      <div class="row"><div class="batwrap">
+        <div class="batglyph" id="batGlyph"><i id="batFill" style="width:0%"></i></div>
+        <div class="batinfo"><div class="top"><span class="p" id="batPct">—</span><span class="v" id="batVolt"></span><span class="battag" id="batChg" hidden>зарядка</span></div><div class="est" id="batEst">нет данных</div></div>
+      </div></div>
+      <div class="row"><div class="lb"><b>Ёмкость аккумулятора</b><span>для оценки оставшегося времени</span></div>
+        <div class="stepper"><button id="capMinus">−</button><span class="v" id="capVal">320</span><button id="capPlus">＋</button></div></div>
+      <div class="row"><div class="lb"><b>Делитель напряжения</b><span>R1 = R2 = 100 кОм → коэффициент 2.0</span></div>
+        <div class="stepper"><button id="divMinus">−</button><span class="v" id="divVal">2.0</span><button id="divPlus">＋</button></div></div>
+      <div class="row" id="demoBatRow" style="display:block"><div class="lb" style="margin-bottom:6px"><b>Заряд в демо-режиме</b><span id="demoBatLabel">87 %</span></div>
+        <input type="range" id="demoBatRange" min="0" max="100" step="1" value="87"></div>
+      <div class="row" id="demoChgRow"><div class="lb"><b>Заряжается (демо)</b><span>проверить индикатор зарядки</span></div><span class="switch"><input type="checkbox" id="demoChgSw"><i></i></span></div>
     </div>
-    <p class="note">Давление зависит от этажа и погоды, поэтому ноль запоминается при каждом подключении. Температурная компенсация работает всё время, пока вы занимаетесь.</p></div>
-
+    <p class="note">Заряд измеряется делителем на двух резисторах: <b>BAT+ → 100 кОм → GPIO3 → 100 кОм → GND</b>. Провод <b>CHRG</b> модуля TP4056 на <b>GPIO4</b> добавляет определение зарядки. Без делителя показания будут неверными.</p></div>
+    <div class="group"><div class="group-t">Калибровка</div><div class="rows">
+      <button class="row tap" id="calBtn"><div class="lb"><b>Калибровать давление</b><span>Обнулить мяч на текущей высоте. Не сжимайте мяч.</span></div><span class="val" id="calAgo">—</span></button>
+      <div class="row"><div class="lb"><b>Компенсация температуры</b><span>Убирает нагрев от руки</span></div><span class="switch"><input type="checkbox" id="tempSw" checked><i></i></span></div>
+      <div class="row"><div class="lb"><b>Авто-ноль в покое</b><span>Подстраивает ноль, когда мяч не сжимают</span></div><span class="switch"><input type="checkbox" id="autoZeroSw" checked><i></i></span></div>
+      <div class="row" style="display:block"><div class="lb" style="margin-bottom:6px"><b>Чувствительность</b><span id="sensLabel">Полное сжатие = 6 гПа</span></div><input type="range" id="sensRange" min="2" max="15" step="0.5" value="6"></div>
+    </div></div>
     <div class="group"><div class="group-t">Цель и напоминания</div><div class="rows">
       <div class="row"><div class="lb"><b>Цель на день</b><span>сжатий в сутки</span></div>
         <div class="stepper"><button id="goalMinus">−</button><span class="v" id="goalVal">60</span><button id="goalPlus">＋</button></div></div>
-      <div class="row"><div class="lb"><b>Напоминания</b><span id="notifSub">Вечером, если цель ещё не выполнена</span></div>
-        <span class="switch"><input type="checkbox" id="notifSw"><i></i></span></div>
+      <div class="row"><div class="lb"><b>Напоминания</b><span id="notifSub">Вечером, если цель не выполнена</span></div><span class="switch"><input type="checkbox" id="notifSw"><i></i></span></div>
       <div class="row"><div class="lb"><b>Время напоминания</b></div><input type="time" id="notifTime" value="19:00"></div>
       <button class="row tap" id="notifTest"><div class="lb"><b>Проверить уведомление</b></div>
         <svg class="chev" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m1 1 6 6-6 6"/></svg></button>
-    </div>
-    <p class="note">На iPhone уведомления приходят, пока приложение открыто или свёрнуто недавно. Системные пуши в закрытом виде требуют нативной сборки — это следующий шаг проекта.</p></div>
-
+    </div></div>
     <div class="group"><div class="group-t">Приложение</div><div class="rows">
-      <button class="row tap" id="installRow"><div class="lb"><b>Иконка на экране «Домой»</b><span>Как установить Motus как приложение</span></div>
+      <button class="row tap" id="installRow"><div class="lb"><b>Иконка на экране «Домой»</b><span>Как установить Motus</span></div>
         <svg class="chev" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m1 1 6 6-6 6"/></svg></button>
-      <button class="row tap" id="fwRow"><div class="lb"><b>Прошивка ESP32-C3</b><span>Код для мяча: BMP390 + BLE</span></div>
+      <button class="row tap" id="fwRow"><div class="lb"><b>Прошивка ESP32-C3</b><span>Код с зарядом и обнулением</span></div>
         <svg class="chev" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m1 1 6 6-6 6"/></svg></button>
       <button class="row tap" id="resetRow"><div class="lb"><b style="color:var(--clay)">Сбросить все данные</b><span>История, цели и калибровка</span></div></button>
     </div></div>
-    <p class="note" style="text-align:center">Motus Manus · пневматический мяч для кисти<br>ESP32-C3 · BMP390 · TPU</p>
+    <p class="note" style="text-align:center">Motus Manus · пневматический мяч для кисти<br>ESP32-C3 · BMP280 · TPU</p>
   </section>
 </main>
-
 <nav id="tabbar">
   <button data-tab="home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8 13.5c1.2-2.6 2.6-2.6 4 0s2.8 2.6 4 0"/></svg>Сегодня</button>
   <button data-tab="proto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h3l2-5 3 10 2-5h6"/></svg>Методики</button>
@@ -420,45 +387,38 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 </nav>
 </div>
 
-<!-- ============ ТРЕНИРОВКА ============ -->
 <div id="wo">
-  <header>
-    <button id="woClose">✕</button>
-    <span id="woName">Сжатия</span>
-    <span id="woRep">0 / 10</span>
-  </header>
+  <header><button id="woClose">✕</button><span id="woName">Сжатия</span><span id="woRep">0 / 10</span></header>
   <div id="woBody">
     <button id="woAuto" hidden>Авто-показ</button>
-    <div id="woPhase">Приготовьтесь</div>
-    <div id="woSub"></div>
+    <div id="woPhase">Приготовьтесь</div><div id="woSub"></div>
     <div id="woRingWrap">
       <svg viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="86" fill="none" stroke="#EAF0EC" stroke-width="13"/>
-        <circle id="woTarget" cx="100" cy="100" r="86" fill="none" stroke="#C9D6CE" stroke-width="13" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="0 540.35"/>
-        <circle id="woArc" cx="100" cy="100" r="86" fill="none" stroke="url(#rg)" stroke-width="13" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="#EFF3F0" stroke-width="9"/>
+        <circle id="woTargetArc" cx="100" cy="100" r="88" fill="none" stroke="#C9D6CE" stroke-width="9" stroke-linecap="round" transform="rotate(-90 100 100)" stroke-dasharray="0 552.92"/>
+        <line id="woNotch" x1="100" y1="12" x2="100" y2="27" stroke="#4E6B5F" stroke-width="3" stroke-linecap="round" opacity="0"/>
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#EAF0EC" stroke-width="15"/>
+        <circle id="woArc" cx="100" cy="100" r="70" fill="none" stroke="url(#rg)" stroke-width="15" stroke-linecap="round" transform="rotate(-90 100 100)"/>
       </svg>
-      <div class="ring-c">
-        <div id="woCount">5<small>с</small></div>
-        <div class="l" id="woCountLabel">осталось</div>
-      </div>
+      <div class="ring-c"><div id="woYou">0<small>%</small></div><div id="woTargetLabel">цель 70%</div><div id="woCount"></div></div>
     </div>
+    <div class="readout">
+      <div class="ro you"><div class="k">вы</div><div class="v" id="roYou">0%</div></div>
+      <div class="ro tgt"><div class="k">цель</div><div class="v" id="roTgt">70%</div></div>
+      <div class="ro dev" id="roDevBox"><div class="k">отклонение</div><div class="v" id="roDev">−70</div></div>
+    </div>
+    <canvas id="woTrace"></canvas>
+    <div class="trace-legend"><span><i class="sw you"></i>ваше усилие</span><span><i class="sw tgt"></i>цель</span></div>
     <div id="woElapsed">00:00</div>
     <div id="woQuality"><i></i></div>
   </div>
-  <div id="woCtrls">
-    <button class="btn sec" id="woPause">Пауза</button>
-    <button class="btn danger" id="woStop">Завершить</button>
-  </div>
+  <div id="woCtrls"><button class="btn sec" id="woPause">Пауза</button><button class="btn danger" id="woStop">Завершить</button></div>
   <div id="woDone">
     <div id="doneCheck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></div>
-    <h2>Готово</h2>
-    <div id="doneMsg"></div>
-    <div class="done-grid" id="doneGrid"></div>
-    <button class="btn pri" id="doneAgain">Ещё раз</button>
-    <button class="btn sec" id="doneClose">На сегодня хватит</button>
+    <h2>Готово</h2><div id="doneMsg"></div><div class="done-grid" id="doneGrid"></div>
+    <button class="btn pri" id="doneAgain">Ещё раз</button><button class="btn sec" id="doneClose">На сегодня хватит</button>
   </div>
 </div>
-
 <div id="scrim"></div>
 <div id="sheet"><div class="grab"></div><div id="sheetBody"></div></div>
 <div id="toast"><span id="toastMsg"></span><button id="toastAct" hidden></button></div>
@@ -466,7 +426,6 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 <script>
 (function(){
 'use strict';
-/* ================= базовое ================= */
 const $=id=>document.getElementById(id);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const lerp=(a,b,t)=>a+(b-a)*t;
@@ -478,67 +437,51 @@ const fmtDur=s=>{s=Math.max(0,Math.round(s));return String(Math.floor(s/60)).pad
 const fmtTime=ts=>new Intl.DateTimeFormat('ru-RU',{hour:'2-digit',minute:'2-digit'}).format(new Date(ts));
 const fmtDay=ts=>new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long'}).format(new Date(ts));
 const vib=ms=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
-const CIRC=2*Math.PI*86;
+const C1=2*Math.PI*88, C2=2*Math.PI*70, C0=2*Math.PI*86;
 
-/* ================= состояние ================= */
-const S=Object.assign({goal:60,sens:6,tempComp:true,autoZero:true,demo:true,sound:true,notif:false,notifTime:'19:00',lastNotif:''},store.get('mm2_set',{}));
-let sessions=store.get('mm2_sess',null);
-let days=store.get('mm2_days',{});
-let cal=store.get('mm2_cal',null); // {p0,t0,at}
-const live={p:1013.25,t:24.5,delta:0,pct:0,disp:0,hz:0,thermal:0,idleSince:performance.now()};
-const sim={val:0,target:0,pressing:false,strength:.85,heat:0,phase:0};
+const S=Object.assign({goal:60,sens:6,tempComp:true,autoZero:true,demo:true,sound:true,notif:false,notifTime:'19:00',lastNotif:'',cap:320,div:2.0,demoBat:87,demoChg:false},store.get('mm3_set',{}));
+let sessions=store.get('mm3_sess',null);
+let days=store.get('mm3_days',{});
+let cal=store.get('mm3_cal',null);
+const live={p:1013.25,t:24.5,delta:0,pct:0,disp:0,hz:0,thermal:0,idleSince:performance.now(),bat:null,volt:null,chg:false,batAt:0};
+const sim={val:0,target:0,pressing:false,strength:.85,heat:0};
 const ble={device:null,press:null,cmd:null,on:false,busy:false,userDisc:false,retries:0,nc:0,nt:performance.now()};
-const persist=()=>{store.set('mm2_set',S);store.set('mm2_sess',sessions);store.set('mm2_days',days);store.set('mm2_cal',cal)};
+const persist=()=>{store.set('mm3_set',S);store.set('mm3_sess',sessions);store.set('mm3_days',days);store.set('mm3_cal',cal)};
 
-/* ================= иконка приложения ================= */
-(function makeIcon(){
-  function draw(sz){
-    const c=document.createElement('canvas');c.width=c.height=sz;const x=c.getContext('2d');
+(function icon(){
+  function draw(sz){const c=document.createElement('canvas');c.width=c.height=sz;const x=c.getContext('2d');
     const g=x.createLinearGradient(0,0,sz,sz);g.addColorStop(0,'#5E7F71');g.addColorStop(1,'#3E574C');
-    x.fillStyle=g;x.fillRect(0,0,sz,sz);
-    x.fillStyle='rgba(246,244,240,.95)';x.beginPath();x.arc(sz/2,sz*.47,sz*.30,0,7);x.fill();
+    x.fillStyle=g;x.fillRect(0,0,sz,sz);x.fillStyle='rgba(246,244,240,.95)';
+    x.beginPath();x.arc(sz/2,sz*.47,sz*.30,0,7);x.fill();
     x.strokeStyle='#4E6B5F';x.lineWidth=sz*.035;x.lineCap='round';x.lineJoin='round';
-    x.beginPath();const cy=sz*.47,w=sz*.17;
-    x.moveTo(sz/2-w,cy);x.lineTo(sz/2-w*.45,cy);x.lineTo(sz/2-w*.15,cy-sz*.075);
-    x.lineTo(sz/2+w*.2,cy+sz*.075);x.lineTo(sz/2+w*.5,cy);x.lineTo(sz/2+w,cy);x.stroke();
+    const cy=sz*.47,w=sz*.17;x.beginPath();x.moveTo(sz/2-w,cy);x.lineTo(sz/2-w*.45,cy);
+    x.lineTo(sz/2-w*.15,cy-sz*.075);x.lineTo(sz/2+w*.2,cy+sz*.075);x.lineTo(sz/2+w*.5,cy);x.lineTo(sz/2+w,cy);x.stroke();
     x.fillStyle='rgba(246,244,240,.85)';x.font='600 '+sz*.11+'px -apple-system,sans-serif';x.textAlign='center';
-    x.fillText('MOTUS',sz/2,sz*.88);
-    return c.toDataURL('image/png');
-  }
-  const i180=draw(180),i512=draw(512);
-  $('ati').href=i180;$('fav').href=i180;
-  try{
-    const m={name:'Motus — мяч для кисти',short_name:'Motus',display:'standalone',start_url:location.href,
-      background_color:'#F6F4F0',theme_color:'#F6F4F0',icons:[{src:i180,sizes:'180x180',type:'image/png'},{src:i512,sizes:'512x512',type:'image/png'}]};
-    $('mani').href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/json'}));
-  }catch(e){}
+    x.fillText('MOTUS',sz/2,sz*.88);return c.toDataURL('image/png')}
+  const a=draw(180),b=draw(512);$('ati').href=a;$('fav').href=a;
+  try{$('mani').href=URL.createObjectURL(new Blob([JSON.stringify({name:'Motus — мяч для кисти',short_name:'Motus',display:'standalone',start_url:location.href,background_color:'#F6F4F0',theme_color:'#F6F4F0',icons:[{src:a,sizes:'180x180',type:'image/png'},{src:b,sizes:'512x512',type:'image/png'}]})],{type:'application/json'}))}catch(e){}
 })();
 
-/* ================= звук ================= */
 const snd={ctx:null,master:null,
   ensure(){if(!this.ctx){try{this.ctx=new (window.AudioContext||window.webkitAudioContext)();this.master=this.ctx.createGain();this.master.gain.value=S.sound?1:0;this.master.connect(this.ctx.destination)}catch(e){}}if(this.ctx&&this.ctx.state==='suspended')this.ctx.resume()},
-  tone(f,d,g,when,type){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime+(when||0);
-    const o=this.ctx.createOscillator(),gn=this.ctx.createGain();o.type=type||'sine';o.frequency.value=f;
-    gn.gain.setValueAtTime(0,t);gn.gain.linearRampToValueAtTime(g||.05,t+.015);gn.gain.exponentialRampToValueAtTime(.0001,t+d);
-    o.connect(gn);gn.connect(this.master);o.start(t);o.stop(t+d+.05)},
-  tick(){this.tone(520,.08,.045)}, rep(){this.tone(660,.1,.05);this.tone(880,.12,.04,.07)},
-  done(){[523,659,784].forEach((f,i)=>this.tone(f,.3,.05,i*.11))},
-  connect(){this.tone(587,.16,.05);this.tone(880,.2,.04,.1)}
-};
+  tone(f,d,g,w){if(!this.ctx||!S.sound)return;const t=this.ctx.currentTime+(w||0);
+    const o=this.ctx.createOscillator(),n=this.ctx.createGain();o.type='sine';o.frequency.value=f;
+    n.gain.setValueAtTime(0,t);n.gain.linearRampToValueAtTime(g||.05,t+.015);n.gain.exponentialRampToValueAtTime(.0001,t+d);
+    o.connect(n);n.connect(this.master);o.start(t);o.stop(t+d+.05)},
+  tick(){this.tone(520,.08,.045)},rep(){this.tone(660,.1,.05);this.tone(880,.12,.04,.07)},
+  hit(){this.tone(784,.09,.035)},done(){[523,659,784].forEach((f,i)=>this.tone(f,.3,.05,i*.11))},
+  connect(){this.tone(587,.16,.05);this.tone(880,.2,.04,.1)}};
 function setSound(on){S.sound=on;persist();if(snd.master)snd.master.gain.value=on?1:0;
   $('muteBtn').setAttribute('aria-pressed',on);$('icoOn').hidden=!on;$('icoOff').hidden=on}
 $('muteBtn').addEventListener('click',()=>{snd.ensure();setSound(!S.sound)});
 document.addEventListener('pointerdown',()=>snd.ensure());
 
-/* ================= методики ================= */
-const ICONS={
-  squeeze:'<path d="M8 13.5c1.2-2.6 2.6-2.6 4 0s2.8 2.6 4 0"/><circle cx="12" cy="12" r="8.5"/>',
-  hold:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
-  smooth:'<path d="M4 16c3 0 3-8 6-8s3 8 6 8 3-4 4-4"/>',
-  steps:'<path d="M4 18h4v-4h4v-4h4V6h4"/>',
-  wave:'<path d="M3 12c2-5 4-5 6 0s4 5 6 0 4-5 6 0"/>',
-  free:'<circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 1.5M9.5 3h5"/>'
-};
+const ICONS={squeeze:'<circle cx="12" cy="12" r="8.5"/><path d="M8 13.5c1.2-2.6 2.6-2.6 4 0s2.8 2.6 4 0"/>',
+ hold:'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+ smooth:'<path d="M4 16c3 0 3-8 6-8s3 8 6 8 3-4 4-4"/>',
+ steps:'<path d="M4 18h4v-4h4v-4h4V6h4"/>',
+ wave:'<path d="M3 12c2-5 4-5 6 0s4 5 6 0 4-5 6 0"/>',
+ free:'<circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 1.5M9.5 3h5"/>'};
 const PROTOS=[
  {id:'squeeze',name:'Сжатия',desc:'Сожмите мяч до целевого усилия и полностью отпустите. Базовая методика для силы хвата.',
   params:[{k:'reps',l:'Повторы',min:5,max:40,step:5,def:10,u:''},{k:'target',l:'Усилие',min:40,max:95,step:5,def:70,u:'%'}],
@@ -546,59 +489,60 @@ const PROTOS=[
   build(p){const a=[];for(let i=0;i<p.reps;i++){a.push({type:'squeeze',target:p.target,timeout:7,label:'Сожмите',sub:'до '+p.target+'% усилия'});
     a.push({type:'hold',target:p.target,dur:1,label:'Держите',sub:'короткая фиксация'});
     a.push({type:'release',timeout:7,label:'Отпустите',sub:'полностью расслабьте кисть',rep:true});
-    if(i<p.reps-1)a.push({type:'rest',dur:1.2,label:'Пауза',sub:'расслабьте руку'});}return a}},
+    if(i<p.reps-1)a.push({type:'rest',dur:1.2,label:'Пауза',sub:'расслабьте руку'})}return a}},
  {id:'hold',name:'Удержание',desc:'Сожмите сильно и удерживайте усилие заданное время. Тренирует выносливость и статическую силу.',
   params:[{k:'reps',l:'Подходы',min:3,max:12,step:1,def:5,u:''},{k:'hold',l:'Удержание',min:5,max:30,step:5,def:10,u:'с'},{k:'target',l:'Усилие',min:50,max:95,step:5,def:80,u:'%'}],
   meta:p=>p.reps+'×'+p.hold+'с · '+p.target+'%',
   build(p){const a=[];for(let i=0;i<p.reps;i++){a.push({type:'squeeze',target:p.target,timeout:8,label:'Сожмите',sub:'до '+p.target+'% и держите'});
     a.push({type:'hold',target:p.target,dur:p.hold,label:'Удерживайте',sub:'не ослабляйте хват',rep:true});
     a.push({type:'release',timeout:8,label:'Отпустите',sub:'восстановите дыхание'});
-    if(i<p.reps-1)a.push({type:'rest',dur:3,label:'Отдых',sub:'встряхните кисть'});}return a}},
- {id:'smooth',name:'Плавный спуск',desc:'Быстро сожмите, затем отпускайте медленно и равномерно. Контроль движения — самая полезная навык для кисти.',
+    if(i<p.reps-1)a.push({type:'rest',dur:3,label:'Отдых',sub:'встряхните кисть'})}return a}},
+ {id:'smooth',name:'Плавный спуск',desc:'Быстро сожмите, затем отпускайте медленно и равномерно, следуя за пунктирной линией.',
   params:[{k:'reps',l:'Повторы',min:3,max:15,step:1,def:6,u:''},{k:'rel',l:'Спуск',min:3,max:12,step:1,def:6,u:'с'}],
   meta:p=>p.reps+' повторов · спуск '+p.rel+'с',
   build(p){const a=[];for(let i=0;i<p.reps;i++){a.push({type:'squeeze',target:85,timeout:7,label:'Сожмите',sub:'быстро до 85%'});
-    a.push({type:'ramp',from:85,to:0,dur:p.rel,label:'Отпускайте плавно',sub:'следуйте за серой отметкой',rep:true});
-    if(i<p.reps-1)a.push({type:'rest',dur:1.5,label:'Пауза',sub:''});}return a}},
- {id:'steps',name:'Ступени',desc:'Поднимайтесь по ступеням усилия 25 → 50 → 75 → 100%, задерживаясь на каждой. Учит дозировать силу.',
+    a.push({type:'ramp',from:85,to:0,dur:p.rel,label:'Отпускайте плавно',sub:'ведите линию за пунктиром',rep:true});
+    if(i<p.reps-1)a.push({type:'rest',dur:1.5,label:'Пауза',sub:''})}return a}},
+ {id:'steps',name:'Ступени',desc:'Поднимайтесь по ступеням 25 → 50 → 75 → 100%, задерживаясь на каждой. Учит дозировать силу.',
   params:[{k:'cycles',l:'Циклы',min:1,max:6,step:1,def:3,u:''},{k:'hold',l:'Ступень',min:2,max:8,step:1,def:3,u:'с'}],
   meta:p=>p.cycles+' цикла · '+p.hold+'с на ступень',
   build(p){const a=[];for(let c=0;c<p.cycles;c++){[25,50,75,100].forEach((s,i)=>{
     a.push({type:'squeeze',target:s,timeout:6,label:'Ступень '+s+'%',sub:i?'добавьте усилие':'лёгкое сжатие'});
-    a.push({type:'hold',target:s,dur:p.hold,label:'Держите '+s+'%',sub:'ровное усилие'});});
+    a.push({type:'hold',target:s,dur:p.hold,label:'Держите '+s+'%',sub:'ровное усилие'})});
     a.push({type:'release',timeout:8,label:'Отпустите',sub:'полный отдых',rep:true});
-    if(c<p.cycles-1)a.push({type:'rest',dur:3,label:'Отдых',sub:'между циклами'});}return a}},
- {id:'wave',name:'Волна',desc:'Плавно нарастите усилие до пика и так же плавно вернитесь к нулю, как волна. Непрерывное движение без рывков.',
+    if(c<p.cycles-1)a.push({type:'rest',dur:3,label:'Отдых',sub:'между циклами'})}return a}},
+ {id:'wave',name:'Волна',desc:'Плавно нарастите усилие до пика и так же плавно вернитесь к нулю. Непрерывное движение без рывков.',
   params:[{k:'waves',l:'Волны',min:3,max:12,step:1,def:6,u:''},{k:'dur',l:'Длина волны',min:4,max:12,step:2,def:8,u:'с'}],
   meta:p=>p.waves+' волн · '+p.dur+'с',
   build(p){const a=[];for(let i=0;i<p.waves;i++){a.push({type:'wave',amp:80,dur:p.dur,label:'Волна',sub:'плавно вверх и вниз',rep:true});
-    if(i<p.waves-1)a.push({type:'rest',dur:1,label:'Пауза',sub:''});}return a}},
- {id:'free',name:'Свободный таймер',desc:'Просто сжимайте мяч в своём темпе, пока идёт таймер. Приложение считает повторы само.',
+    if(i<p.waves-1)a.push({type:'rest',dur:1,label:'Пауза',sub:''})}return a}},
+ {id:'free',name:'Свободный таймер',desc:'Сжимайте мяч в своём темпе, пока идёт таймер. Приложение считает повторы само.',
   params:[{k:'dur',l:'Длительность',min:30,max:300,step:30,def:60,u:'с'}],
   meta:p=>fmtDur(p.dur)+' · свой темп',
-  build(p){return[{type:'free',dur:p.dur,label:'Сжимайте в своём темпе',sub:'каждое сжатие считается'}]}}
-];
+  build(p){return[{type:'free',dur:p.dur,label:'Сжимайте в своём темпе',sub:'каждое сжатие считается'}]}}];
 const protoById=id=>PROTOS.find(p=>p.id===id);
+function targetAt(ph,t){
+  if(!ph)return null;
+  if(ph.type==='squeeze'||ph.type==='hold')return ph.target;
+  if(ph.type==='release'||ph.type==='rest')return 0;
+  if(ph.type==='ramp')return lerp(ph.from,ph.to,clamp(t/ph.dur,0,1));
+  if(ph.type==='wave')return ph.amp*(0.5-0.5*Math.cos(2*Math.PI*clamp(t/ph.dur,0,1)));
+  return null;
+}
 
-/* ================= сид-история ================= */
 function seed(){
   sessions=[];days={};
   const plan=[[1,[['squeeze',10,72,58],['hold',5,80,95]]],[2,[['squeeze',15,70,84]]],[3,[['smooth',6,64,78],['free',12,52,60]]],[4,[['steps',3,76,110]]],[5,[['squeeze',10,68,55],['wave',6,71,80]]],[6,[['hold',4,74,70]]]];
-  plan.forEach(([ago,list])=>{
-    const d=new Date();d.setDate(d.getDate()-ago);d.setHours(9+ago%8,15+ago*7%40,0,0);
-    list.forEach(([pid,reps,q,dur],i)=>{
-      const ts=d.getTime()+i*42e5;const p=protoById(pid);
+  plan.forEach(([ago,list])=>{const d=new Date();d.setDate(d.getDate()-ago);d.setHours(9+ago%8,15+ago*7%40,0,0);
+    list.forEach(([pid,reps,q,dur],i)=>{const ts=d.getTime()+i*42e5;const p=protoById(pid);
       sessions.push({id:uid(),date:ts,proto:pid,name:p.name,reps,dur,q,peak:Math.min(100,q+12),note:'',params:null});
-      const k=dayKey(ts);days[k]=(days[k]||0)+reps;
-    });
-  });
-  const tk=today();days[tk]=18;
+      const k=dayKey(ts);days[k]=(days[k]||0)+reps})});
+  days[today()]=18;
   sessions.push({id:uid(),date:Date.now()-3*36e5,proto:'squeeze',name:'Сжатия',reps:18,dur:96,q:74,peak:86,note:'Утренняя разминка',params:null});
   sessions.sort((a,b)=>b.date-a.date);persist();
 }
 if(!Array.isArray(sessions))seed();
 
-/* ================= тост / шторка ================= */
 let toastT=null,toastFn=null;
 function toast(msg,act,fn){$('toastMsg').textContent=msg;const a=$('toastAct');
   if(act){a.hidden=false;a.textContent=act;toastFn=fn}else{a.hidden=true;toastFn=null}
@@ -608,19 +552,15 @@ function openSheet(html){$('sheetBody').innerHTML=html;$('scrim').classList.add(
 function closeSheet(){$('scrim').classList.remove('on');$('sheet').classList.remove('on')}
 $('scrim').addEventListener('click',closeSheet);
 
-/* ================= вкладки ================= */
 function setTab(t){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   $('v-'+t).classList.add('on');
   document.querySelectorAll('#tabbar button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
-  if(t==='hist')renderHist();if(t==='home')renderToday();
+  if(t==='hist')renderHist();if(t==='home')renderToday();if(t==='set')renderBattery();
   window.scrollTo({top:0})}
 document.querySelectorAll('#tabbar button').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
 
-/* ================= счётчики ================= */
-function addRep(){const k=today();days[k]=(days[k]||0)+1;persist();renderToday();
-  if(W.on&&W.phaseType!=='free'){} }
-function streak(){let s=0;const d=new Date();
-  if(!(days[dayKey(d)]>0))d.setDate(d.getDate()-1);
+function addRep(){const k=today();days[k]=(days[k]||0)+1;persist();renderToday()}
+function streak(){let s=0;const d=new Date();if(!(days[dayKey(d)]>0))d.setDate(d.getDate()-1);
   while(days[dayKey(d)]>0){s++;d.setDate(d.getDate()-1)}return s}
 function renderToday(){
   const t=days[today()]||0;const y=new Date();y.setDate(y.getDate()-1);const yv=days[dayKey(y)]||0;
@@ -628,44 +568,36 @@ function renderToday(){
   $('goalLabel').textContent='цель '+S.goal;$('goalVal').textContent=S.goal;
   $('goalBar').style.width=clamp(t/S.goal*100,0,100)+'%';
   $('streak').textContent=streak()+' дн.';
-  const mins=Math.round(sessions.filter(s=>dayKey(s.date)===today()).reduce((a,s)=>a+s.dur,0)/60);
-  $('todayTime').textContent=mins+' мин';
+  $('todayTime').textContent=Math.round(sessions.filter(s=>dayKey(s.date)===today()).reduce((a,s)=>a+s.dur,0)/60)+' мин';
   const e=$('encourage');e.classList.remove('warn');
-  if(t>=S.goal){e.textContent='Цель выполнена. Отличная работа — кисть скажет спасибо.'}
-  else if(t>yv&&yv>0){e.textContent='Уже больше, чем вчера за весь день. Осталось '+(S.goal-t)+' сжатий.'}
+  if(t>=S.goal)e.textContent='Цель выполнена. Отличная работа — кисть скажет спасибо.';
+  else if(t>yv&&yv>0)e.textContent='Уже больше, чем вчера за весь день. Осталось '+(S.goal-t)+' сжатий.';
   else if(t===0){e.textContent='Сегодня ещё не было сжатий. Начните с лёгких десяти повторов.';e.classList.add('warn')}
-  else{e.textContent='Осталось '+(S.goal-t)+' сжатий до цели. Вы справитесь.'}
+  else e.textContent='Осталось '+(S.goal-t)+' сжатий до цели. Вы справитесь.';
   $('hToday').textContent=t;$('hYest').textContent=yv;
   let wk=0;for(let i=0;i<7;i++){const d=new Date();d.setDate(d.getDate()-i);wk+=days[dayKey(d)]||0}
   $('hWeek').textContent=wk;$('hStreak').textContent=streak();$('weekTotal').textContent=wk+' сжатий';
 }
 $('dateLine').textContent=new Intl.DateTimeFormat('ru-RU',{weekday:'long',day:'numeric',month:'long'}).format(new Date());
 
-/* ================= недельный график ================= */
 const wc=$('weekChart'),wx=wc.getContext('2d');
 function drawWeek(){
   const dpr=Math.min(2,devicePixelRatio||1),w=wc.clientWidth||320,h=150;
   wc.width=w*dpr;wc.height=h*dpr;wx.setTransform(dpr,0,0,dpr,0,0);wx.clearRect(0,0,w,h);
-  const vals=[],labels=[];const wd=['вс','пн','вт','ср','чт','пт','сб'];
+  const vals=[],labels=[],wd=['вс','пн','вт','ср','чт','пт','сб'];
   for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);vals.push(days[dayKey(d)]||0);labels.push(wd[d.getDay()])}
-  const max=Math.max(S.goal*1.15,...vals,10);const bw=(w-20)/7;
-  const gy=h-26-(S.goal/max)*(h-44);
+  const max=Math.max(S.goal*1.15,...vals,10),bw=(w-20)/7,gy=h-26-(S.goal/max)*(h-44);
   wx.strokeStyle='rgba(185,143,78,.5)';wx.setLineDash([3,4]);wx.beginPath();wx.moveTo(10,gy);wx.lineTo(w-10,gy);wx.stroke();wx.setLineDash([]);
   wx.fillStyle='#B98F4E';wx.font='600 9px -apple-system,sans-serif';wx.fillText('цель',w-34,gy-4);
-  vals.forEach((v,i)=>{
-    const x=10+i*bw+bw*.22,bh=Math.max(3,(v/max)*(h-44)),y=h-26-bh;
-    const isToday=i===6;
-    wx.fillStyle=isToday?'#4E6B5F':'#C9D6CE';
-    wx.beginPath();wx.roundRect(x,y,bw*.56,bh,5);wx.fill();
-    wx.fillStyle=isToday?'#4E6B5F':'#A9B1AB';wx.font='600 10px -apple-system,sans-serif';wx.textAlign='center';
-    wx.fillText(labels[i],x+bw*.28,h-10);
-    if(v>0){wx.fillStyle=isToday?'#4E6B5F':'#7C8580';wx.font='600 10px -apple-system,sans-serif';wx.fillText(v,x+bw*.28,y-5)}
-    wx.textAlign='left';
-  });
+  vals.forEach((v,i)=>{const x=10+i*bw+bw*.22,bh=Math.max(3,(v/max)*(h-44)),y=h-26-bh,t=i===6;
+    wx.fillStyle=t?'#4E6B5F':'#C9D6CE';wx.beginPath();
+    if(wx.roundRect)wx.roundRect(x,y,bw*.56,bh,5);else wx.rect(x,y,bw*.56,bh);
+    wx.fill();wx.textAlign='center';
+    wx.fillStyle=t?'#4E6B5F':'#A9B1AB';wx.font='600 10px -apple-system,sans-serif';wx.fillText(labels[i],x+bw*.28,h-10);
+    if(v>0){wx.fillStyle=t?'#4E6B5F':'#7C8580';wx.fillText(v,x+bw*.28,y-5)}wx.textAlign='left'});
 }
 new ResizeObserver(()=>{if($('v-hist').classList.contains('on'))drawWeek()}).observe(wc);
 
-/* ================= история ================= */
 let histFilter='';
 function renderHist(){
   renderToday();drawWeek();
@@ -674,118 +606,86 @@ function renderHist(){
     b.addEventListener('click',()=>{histFilter=id;renderHist()});chips.appendChild(b)};
   mk('','Все');PROTOS.forEach(p=>mk(p.id,p.name));
   const list=$('histList');list.innerHTML='';
-  const filtered=sessions.filter(s=>!histFilter||s.proto===histFilter).sort((a,b)=>b.date-a.date);
-  if(!filtered.length){list.innerHTML='<div class="card"><div class="empty">Пока пусто.<br>Завершите тренировку — она появится здесь.</div></div>';return}
+  const f=sessions.filter(s=>!histFilter||s.proto===histFilter).sort((a,b)=>b.date-a.date);
+  if(!f.length){list.innerHTML='<div class="card"><div class="empty">Пока пусто.<br>Завершите тренировку — она появится здесь.</div></div>';return}
   let lastDay='';
-  filtered.forEach(s=>{
-    const dk=dayKey(s.date);
+  f.forEach(s=>{const dk=dayKey(s.date);
     if(dk!==lastDay){lastDay=dk;const h=document.createElement('div');h.className='day-h';
-      h.textContent=dk===today()?'Сегодня':fmtDay(s.date);list.appendChild(h)}
-    let card=list.lastElementChild;if(!card||!card.classList.contains('card')){card=document.createElement('div');card.className='card';list.appendChild(card)}
-    const p=protoById(s.proto)||PROTOS[0];
+      h.textContent=dk===today()?'Сегодня':fmtDay(s.date);list.appendChild(h);
+      const c=document.createElement('div');c.className='card';list.appendChild(c)}
+    const card=list.lastElementChild;
     const row=document.createElement('button');row.className='sess';
-    row.innerHTML='<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+ICONS[s.proto]+'</svg></span>'+
-      '<span class="tx"><b></b><span>'+fmtTime(s.date)+' · '+fmtDur(s.dur)+' · качество '+s.q+'%</span></span>'+
-      '<span class="num"><b>'+s.reps+'</b><span>сжатий</span></span>';
+    row.innerHTML='<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+ICONS[s.proto]+'</svg></span><span class="tx"><b></b><span>'+fmtTime(s.date)+' · '+fmtDur(s.dur)+' · качество '+s.q+'%</span></span><span class="num"><b>'+s.reps+'</b><span>сжатий</span></span>';
     row.querySelector('b').textContent=s.name;
-    row.addEventListener('click',()=>openSession(s.id));
-    card.appendChild(row);
-  });
+    row.addEventListener('click',()=>openSession(s.id));card.appendChild(row)});
 }
 function openSession(id){
   const s=sessions.find(x=>x.id===id);if(!s)return;
-  openSheet('<h3 id="ssName"></h3><div class="desc">'+fmtDay(s.date)+' · '+fmtTime(s.date)+' · '+fmtDur(s.dur)+'</div>'+
-    '<div class="sum-row"><div class="sum"><div class="v">'+s.reps+'</div><div class="k">сжатий</div></div>'+
-    '<div class="sum"><div class="v">'+s.q+'%</div><div class="k">качество</div></div>'+
-    '<div class="sum"><div class="v">'+s.peak+'%</div><div class="k">пик</div></div></div>'+
-    '<label class="fl">Название</label><input type="text" id="ssEdit" maxlength="40">'+
-    '<label class="fl">Заметка</label><textarea id="ssNote" placeholder="Ощущения, усталость, прогресс…"></textarea>'+
-    '<button class="btn pri" id="ssSave">Сохранить</button>'+
-    '<button class="btn sec" id="ssRepeat">Повторить методику</button>'+
-    '<button class="btn danger" id="ssDel">Удалить сессию</button>');
+  openSheet('<h3 id="ssName"></h3><div class="desc">'+fmtDay(s.date)+' · '+fmtTime(s.date)+' · '+fmtDur(s.dur)+'</div><div class="sum-row"><div class="sum"><div class="v">'+s.reps+'</div><div class="k">сжатий</div></div><div class="sum"><div class="v">'+s.q+'%</div><div class="k">качество</div></div><div class="sum"><div class="v">'+s.peak+'%</div><div class="k">пик</div></div></div><label class="fl">Название</label><input type="text" id="ssEdit" maxlength="40"><label class="fl">Заметка</label><textarea id="ssNote" placeholder="Ощущения, усталость, прогресс…"></textarea><button class="btn pri" id="ssSave">Сохранить</button><button class="btn sec" id="ssRepeat">Повторить методику</button><button class="btn danger" id="ssDel">Удалить сессию</button>');
   $('ssName').textContent=s.name;$('ssEdit').value=s.name;$('ssNote').value=s.note||'';
   $('ssSave').addEventListener('click',()=>{s.name=$('ssEdit').value.trim()||s.name;s.note=$('ssNote').value;persist();renderHist();closeSheet();toast('Сохранено')});
   $('ssRepeat').addEventListener('click',()=>{closeSheet();openProto(s.proto,s.params)});
-  $('ssDel').addEventListener('click',()=>{
-    sessions=sessions.filter(x=>x.id!==id);
-    const k=dayKey(s.date);days[k]=Math.max(0,(days[k]||0)-s.reps);
-    persist();renderHist();renderToday();closeSheet();
-    toast('Сессия удалена','Вернуть',()=>{sessions.push(s);days[k]=(days[k]||0)+s.reps;persist();renderHist();renderToday()});
-  });
+  $('ssDel').addEventListener('click',()=>{sessions=sessions.filter(x=>x.id!==id);
+    const k=dayKey(s.date);days[k]=Math.max(0,(days[k]||0)-s.reps);persist();renderHist();renderToday();closeSheet();
+    toast('Сессия удалена','Вернуть',()=>{sessions.push(s);days[k]=(days[k]||0)+s.reps;persist();renderHist();renderToday()})});
 }
-
-/* ================= список методик ================= */
 function renderProtos(){
   const el=$('protoList');el.innerHTML='';
-  PROTOS.forEach(p=>{
-    const defs={};p.params.forEach(x=>defs[x.k]=x.def);
+  PROTOS.forEach(p=>{const defs={};p.params.forEach(x=>defs[x.k]=x.def);
     const b=document.createElement('button');b.className='proto';
-    b.innerHTML='<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+ICONS[p.id]+'</svg></span>'+
-      '<span class="tx"><b>'+p.name+'</b><span>'+p.desc+'</span><span class="meta">'+p.meta(defs)+'</span></span>'+
-      '<svg class="chev" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m1 1 6 6-6 6"/></svg>';
-    b.addEventListener('click',()=>openProto(p.id));
-    el.appendChild(b);
-  });
+    b.innerHTML='<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+ICONS[p.id]+'</svg></span><span class="tx"><b>'+p.name+'</b><span>'+p.desc+'</span><span class="meta">'+p.meta(defs)+'</span></span><svg class="chev" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m1 1 6 6-6 6"/></svg>';
+    b.addEventListener('click',()=>openProto(p.id));el.appendChild(b)});
 }
-function openProto(id, preset){
+function openProto(id,preset){
   const p=protoById(id);if(!p)return;
   const vals={};p.params.forEach(x=>vals[x.k]=preset&&preset[x.k]!=null?preset[x.k]:x.def);
   let html='<h3>'+p.name+'</h3><div class="desc">'+p.desc+'</div>';
-  p.params.forEach(x=>{
-    html+='<div class="param"><div class="lb">'+x.l+'<span>'+x.min+'–'+x.max+' '+x.u+'</span></div>'+
-      '<div class="stepper"><button data-k="'+x.k+'" data-d="-1">−</button><span class="v" id="pv-'+x.k+'">'+vals[x.k]+(x.u?' '+x.u:'')+'</span><button data-k="'+x.k+'" data-d="1">＋</button></div></div>';
-  });
-  html+='<button class="btn pri" id="psStart">Начать</button>';
-  openSheet(html);
+  p.params.forEach(x=>{html+='<div class="param"><div class="lb">'+x.l+'<span>'+x.min+'–'+x.max+' '+x.u+'</span></div><div class="stepper"><button data-k="'+x.k+'" data-d="-1">−</button><span class="v" id="pv-'+x.k+'">'+vals[x.k]+(x.u?' '+x.u:'')+'</span><button data-k="'+x.k+'" data-d="1">＋</button></div></div>'});
+  html+='<button class="btn pri" id="psStart">Начать</button>';openSheet(html);
   $('sheetBody').querySelectorAll('.stepper button').forEach(b=>b.addEventListener('click',()=>{
     const x=p.params.find(q=>q.k===b.dataset.k);
     vals[x.k]=clamp(vals[x.k]+x.step*(+b.dataset.d),x.min,x.max);
-    $('pv-'+x.k).textContent=vals[x.k]+(x.u?' '+x.u:'');vib(6);
-  }));
+    $('pv-'+x.k).textContent=vals[x.k]+(x.u?' '+x.u:'');vib(6)}));
   $('psStart').addEventListener('click',()=>{closeSheet();startWorkout(p,vals)});
 }
 
-/* ================= тренировочный движок ================= */
 const W={on:false,proto:null,params:null,phases:[],idx:0,phaseT:0,zoneT:0,errSum:0,errN:0,
-  reps:0,peak:0,qSum:0,qN:0,t0:0,paused:false,pauseAcc:0,pauseStart:0,done:false,auto:false,phaseType:'',freeArmed:true,lastCount:''};
+  reps:0,peak:0,qSum:0,qN:0,t0:0,paused:false,pauseAcc:0,pauseStart:0,done:false,auto:false,freeArmed:true,
+  trace:[],traceAcc:0,inZone:false,hitAt:0};
+const tr=$('woTrace'),trx=tr.getContext('2d');
+function sizeTrace(){const dpr=Math.min(2,devicePixelRatio||1),w=tr.clientWidth||300,h=84;
+  tr.width=w*dpr;tr.height=h*dpr;trx.setTransform(dpr,0,0,dpr,0,0)}
+new ResizeObserver(sizeTrace).observe(tr);
 function startWorkout(p,vals){
   W.on=true;W.proto=p;W.params=vals;W.phases=p.build(vals);W.idx=0;W.phaseT=0;W.zoneT=0;W.errSum=0;W.errN=0;
-  W.reps=0;W.peak=0;W.qSum=0;W.qN=0;W.t0=performance.now();W.paused=false;W.pauseAcc=0;W.done=false;W.auto=false;W.freeArmed=true;
+  W.reps=0;W.peak=0;W.qSum=0;W.qN=0;W.t0=performance.now();W.paused=false;W.pauseAcc=0;W.done=false;W.auto=false;
+  W.freeArmed=true;W.trace=[];W.traceAcc=0;W.inZone=false;
   $('wo').classList.add('on');$('woDone').classList.remove('on');$('woBody').style.display='flex';$('woCtrls').style.display='flex';
-  $('woName').textContent=p.name;$('woRep').textContent=p.id==='free'?'0 сжатий':'0 / '+(vals.reps||vals.cycles||vals.waves||1);
-  $('woPause').textContent='Пауза';
-  $('woAuto').hidden=!S.demo;$('woAuto').classList.remove('on');$('woAuto').textContent='Авто-показ';
-  enterPhase();snd.tick();
+  $('woName').textContent=p.name;
+  $('woRep').textContent=p.id==='free'?'0 сжатий':'0 / '+(vals.reps||vals.cycles||vals.waves||1);
+  $('woPause').textContent='Пауза';$('woAuto').hidden=!S.demo;
+  $('woAuto').classList.remove('on');$('woAuto').textContent='Авто-показ';
+  sizeTrace();enterPhase();
 }
 function enterPhase(){
-  const ph=W.phases[W.idx];W.phaseT=0;W.zoneT=0;W.errSum=0;W.errN=0;W.phaseType=ph.type;
-  $('woPhase').textContent=ph.label;$('woSub').textContent=ph.sub||'';
-  const tgt=ph.type==='squeeze'||ph.type==='hold'?ph.target:ph.type==='ramp'?ph.from:ph.type==='wave'?0:0;
-  $('woTarget').setAttribute('stroke-dasharray',(CIRC*tgt/100)+' '+CIRC);
-  $('woCountLabel').textContent=ph.type==='squeeze'||ph.type==='release'?'усилие':'осталось';
-  snd.tick();vib(8);
+  const ph=W.phases[W.idx];W.phaseT=0;W.zoneT=0;W.errSum=0;W.errN=0;W.inZone=false;
+  $('woPhase').textContent=ph.label;$('woSub').textContent=ph.sub||'';snd.tick();vib(8);
 }
 function advance(q){
   W.qSum+=clamp(q,0,1);W.qN++;
   const ph=W.phases[W.idx];
   if(ph.rep){W.reps++;addRep();snd.rep();vib(12);
-    $('woRep').textContent=W.proto.id==='free'?W.reps+' сжатий':W.reps+' / '+(W.params.reps||W.params.cycles||W.params.waves||1);}
-  W.idx++;
-  if(W.idx>=W.phases.length)finishWorkout();else enterPhase();
+    $('woRep').textContent=W.proto.id==='free'?W.reps+' сжатий':W.reps+' / '+(W.params.reps||W.params.cycles||W.params.waves||1)}
+  W.idx++;if(W.idx>=W.phases.length)finishWorkout();else enterPhase();
 }
 function finishWorkout(){
   W.done=true;W.on=false;
-  const dur=(performance.now()-W.t0-W.pauseAcc)/1000;
-  const q=W.qN?Math.round(W.qSum/W.qN*100):100;
-  const s={id:uid(),date:Date.now(),proto:W.proto.id,name:W.proto.name,reps:W.reps,dur:Math.round(dur),q,peak:Math.round(W.peak),note:'',params:W.params};
-  if(W.proto.id==='free'&&W.reps>0){days[today()]=(days[today()]||0);} // повторы уже посчитаны
-  if(W.reps>0||dur>10){sessions.unshift(s);persist();}
+  const dur=(performance.now()-W.t0-W.pauseAcc)/1000,q=W.qN?Math.round(W.qSum/W.qN*100):100;
+  if(W.reps>0||dur>10){sessions.unshift({id:uid(),date:Date.now(),proto:W.proto.id,name:W.proto.name,reps:W.reps,dur:Math.round(dur),q,peak:Math.round(W.peak),note:'',params:W.params});persist()}
   $('woBody').style.display='none';$('woCtrls').style.display='none';$('woDone').classList.add('on');
-  $('doneGrid').innerHTML=[['Сжатий',W.reps],['Время',fmtDur(dur)],['Качество',q+'%'],['Пик',Math.round(W.peak)+'%']]
-    .map(([k,v])=>'<div class="sum"><div class="v">'+v+'</div><div class="k">'+k.toLowerCase()+'</div></div>').join('');
+  $('doneGrid').innerHTML=[['Сжатий',W.reps],['Время',fmtDur(dur)],['Качество',q+'%'],['Пик',Math.round(W.peak)+'%']].map(([k,v])=>'<div class="sum"><div class="v">'+v+'</div><div class="k">'+k.toLowerCase()+'</div></div>').join('');
   const t=days[today()]||0;
-  $('doneMsg').textContent=t>=S.goal?'Цель на сегодня выполнена — '+t+' сжатий. Можно отдыхать.':
-    'За сегодня '+t+' из '+S.goal+' сжатий. '+(q>=75?'Очень ровная техника.':'Попробуйте чуть медленнее — качество важнее силы.');
+  $('doneMsg').textContent=t>=S.goal?'Цель на сегодня выполнена — '+t+' сжатий. Можно отдыхать.':'За сегодня '+t+' из '+S.goal+' сжатий. '+(q>=75?'Очень ровная техника.':'Ведите линию ближе к пунктиру — качество важнее силы.');
   snd.done();vib([15,60,15]);renderToday();
 }
 function stopWorkout(){
@@ -797,126 +697,145 @@ function stopWorkout(){
 function closeWorkout(){$('wo').classList.remove('on');W.on=false;W.done=false;sim.target=0;renderToday();if($('v-hist').classList.contains('on'))renderHist()}
 $('woClose').addEventListener('click',stopWorkout);
 $('woStop').addEventListener('click',stopWorkout);
-$('woPause').addEventListener('click',()=>{
-  W.paused=!W.paused;
+$('woPause').addEventListener('click',()=>{W.paused=!W.paused;
   if(W.paused){W.pauseStart=performance.now();$('woPause').textContent='Продолжить';$('woPhase').textContent='Пауза';$('woSub').textContent='дышите ровно'}
-  else{W.pauseAcc+=performance.now()-W.pauseStart;enterPhase();$('woPause').textContent='Пауза'}
-});
+  else{W.pauseAcc+=performance.now()-W.pauseStart;enterPhase();$('woPause').textContent='Пауза'}});
 $('doneAgain').addEventListener('click',()=>{const p=W.proto,v=W.params;closeWorkout();startWorkout(p,v)});
 $('doneClose').addEventListener('click',closeWorkout);
 $('woAuto').addEventListener('click',()=>{W.auto=!W.auto;$('woAuto').classList.toggle('on',W.auto);$('woAuto').textContent=W.auto?'Авто идёт':'Авто-показ'});
 $('quickStart').addEventListener('click',()=>setTab('proto'));
 $('freeStart').addEventListener('click',()=>openProto('free'));
 
-function updateWorkout(dt){
+function drawTrace(now){
+  const w=tr.clientWidth||300,h=84,SPAN=6;
+  trx.clearRect(0,0,w,h);
+  const X=t=>w-8-((now-t)/SPAN)*(w-16), Y=p=>h-9-(clamp(p,0,100)/100)*(h-18);
+  trx.strokeStyle='rgba(147,168,158,.16)';trx.lineWidth=1;
+  [25,50,75].forEach(p=>{trx.beginPath();trx.moveTo(8,Y(p));trx.lineTo(w-8,Y(p));trx.stroke()});
+  trx.fillStyle='#A9B1AB';trx.font='600 8px -apple-system,sans-serif';
+  trx.fillText('100',8,Y(100)+8);trx.fillText('0',8,Y(0)-2);
+  const pts=W.trace.filter(p=>p.t>=now-SPAN);
+  if(pts.length<2)return;
+  // полоса допуска
+  trx.beginPath();let started=false;
+  pts.forEach(p=>{if(p.tg==null)return;const x=X(p.t),y=Y(Math.min(100,p.tg+8));started?trx.lineTo(x,y):(trx.moveTo(x,y),started=true)});
+  for(let i=pts.length-1;i>=0;i--){const p=pts[i];if(p.tg==null)continue;trx.lineTo(X(p.t),Y(Math.max(0,p.tg-8)))}
+  if(started){trx.closePath();trx.fillStyle='rgba(157,184,172,.18)';trx.fill()}
+  // цель пунктиром
+  trx.strokeStyle='#9DB8AC';trx.lineWidth=2;trx.setLineDash([4,3]);trx.beginPath();started=false;
+  pts.forEach(p=>{if(p.tg==null){started=false;return}const x=X(p.t),y=Y(p.tg);started?trx.lineTo(x,y):(trx.moveTo(x,y),started=true)});
+  trx.stroke();trx.setLineDash([]);
+  // ваше усилие
+  trx.strokeStyle='#4E6B5F';trx.lineWidth=2.4;trx.lineJoin='round';trx.beginPath();
+  pts.forEach((p,i)=>{const x=X(p.t),y=Y(p.you);i?trx.lineTo(x,y):trx.moveTo(x,y)});trx.stroke();
+  const last=pts[pts.length-1];
+  if(last.tg!=null){trx.fillStyle='#9DB8AC';trx.beginPath();trx.arc(X(last.t),Y(last.tg),3,0,7);trx.fill()}
+  trx.fillStyle='#4E6B5F';trx.beginPath();trx.arc(X(last.t),Y(last.you),3.6,0,7);trx.fill();
+}
+function updateWorkout(dt,now){
   if(!W.on||W.paused||W.done)return;
   W.phaseT+=dt;
-  const ph=W.phases[W.idx],pct=live.disp;
+  const ph=W.phases[W.idx],pct=live.disp,tg=targetAt(ph,W.phaseT);
   if(pct>W.peak)W.peak=pct;
-  let countText='',tgt=null;
+  let countText='',showCount=false;
   switch(ph.type){
-    case 'squeeze':
-      countText=Math.round(pct)+'<small>%</small>';tgt=ph.target;
-      if(pct>=ph.target)advance(1);
-      else if(W.phaseT>ph.timeout)advance(.4);
-      break;
-    case 'hold':{
-      const remain=Math.max(0,ph.dur-W.phaseT);countText=Math.ceil(remain)+'<small>с</small>';tgt=ph.target;
-      if(pct>=ph.target*.8)W.zoneT+=dt;
-      if(W.phaseT>=ph.dur)advance(W.zoneT/ph.dur);
-      break}
-    case 'release':
-      countText=Math.round(pct)+'<small>%</small>';tgt=0;
-      if(pct<=12)advance(1);else if(W.phaseT>ph.timeout)advance(.5);
-      break;
-    case 'ramp':{
-      tgt=lerp(ph.from,ph.to,clamp(W.phaseT/ph.dur,0,1));
-      const remain=Math.max(0,ph.dur-W.phaseT);countText=Math.ceil(remain)+'<small>с</small>';
-      W.errSum+=Math.abs(pct-tgt);W.errN++;
-      if(W.phaseT>=ph.dur)advance(1-clamp(W.errSum/W.errN/55,0,1));
-      break}
-    case 'wave':{
-      tgt=ph.amp*(0.5-0.5*Math.cos(2*Math.PI*clamp(W.phaseT/ph.dur,0,1)));
-      const remain=Math.max(0,ph.dur-W.phaseT);countText=Math.ceil(remain)+'<small>с</small>';
-      W.errSum+=Math.abs(pct-tgt);W.errN++;
-      if(W.phaseT>=ph.dur)advance(1-clamp(W.errSum/W.errN/55,0,1));
-      break}
-    case 'rest':{
-      const remain=Math.max(0,ph.dur-W.phaseT);countText=Math.ceil(remain)+'<small>с</small>';tgt=0;
-      if(W.phaseT>=ph.dur)advance(1);
-      break}
-    case 'free':{
-      const remain=Math.max(0,ph.dur-W.phaseT);countText=fmtDur(remain);tgt=null;
-      $('woCountLabel').textContent='осталось';
+    case 'squeeze': if(pct>=ph.target)advance(1);else if(W.phaseT>ph.timeout)advance(.4);break;
+    case 'hold':{const r=Math.max(0,ph.dur-W.phaseT);countText=Math.ceil(r)+'<small>с</small>';showCount=true;
+      if(pct>=ph.target*.8)W.zoneT+=dt;if(W.phaseT>=ph.dur)advance(W.zoneT/ph.dur);break}
+    case 'release': if(pct<=12)advance(1);else if(W.phaseT>ph.timeout)advance(.5);break;
+    case 'ramp': case 'wave':{const r=Math.max(0,ph.dur-W.phaseT);countText=Math.ceil(r)+'<small>с</small>';showCount=true;
+      W.errSum+=Math.abs(pct-tg);W.errN++;if(W.phaseT>=ph.dur)advance(1-clamp(W.errSum/W.errN/55,0,1));break}
+    case 'rest':{const r=Math.max(0,ph.dur-W.phaseT);countText=Math.ceil(r)+'<small>с</small>';showCount=true;
+      if(W.phaseT>=ph.dur)advance(1);break}
+    case 'free':{const r=Math.max(0,ph.dur-W.phaseT);countText=fmtDur(r);showCount=true;
       if(!W.freeArmed&&pct<18)W.freeArmed=true;
       if(W.freeArmed&&pct>45){W.freeArmed=false;W.reps++;addRep();snd.rep();vib(10);$('woRep').textContent=W.reps+' сжатий'}
-      if(W.phaseT>=ph.dur)advance(1);
-      break}
+      if(W.phaseT>=ph.dur)advance(1);break}
   }
-  // авто-показ в демо
+  const ph2=W.phases[W.idx];if(!ph2)return;
+  const tg2=targetAt(ph2,W.phaseT),you=live.disp;
   if(W.auto&&S.demo){
-    if(ph.type==='squeeze')sim.target=clamp((ph.target+10)/100,0,1);
-    else if(ph.type==='hold')sim.target=clamp((ph.target+6)/100,0,1);
-    else if(ph.type==='ramp'||ph.type==='wave')sim.target=clamp((tgt||0)/100+ .02,0,1);
+    if(ph2.type==='squeeze')sim.target=clamp((ph2.target+10)/100,0,1);
+    else if(ph2.type==='hold')sim.target=clamp((ph2.target+6)/100,0,1);
+    else if(ph2.type==='ramp'||ph2.type==='wave')sim.target=clamp((tg2||0)/100+.02,0,1);
     else sim.target=0;
   }
-  if(countText!==W.lastCount){W.lastCount=countText;$('woCount').innerHTML=countText}
-  $('woTarget').setAttribute('stroke-dasharray',(CIRC*clamp(tgt||0,0,100)/100)+' '+CIRC);
-  $('woArc').style.strokeDashoffset=CIRC*(1-clamp(pct,0,100)/100);
-  $('woElapsed').textContent=fmtDur((performance.now()-W.t0-W.pauseAcc)/1000);
-  const q=W.qN?W.qSum/W.qN:1;$('woQuality').firstElementChild.style.width=(q*100)+'%';
+  $('woArc').style.strokeDashoffset=C2*(1-clamp(you,0,100)/100);
+  if(tg2==null){
+    $('woTargetArc').setAttribute('stroke-dasharray','0 '+C1);$('woNotch').setAttribute('opacity','0');
+    $('woYou').innerHTML=countText||Math.round(you)+'<small>%</small>';
+    $('woTargetLabel').textContent=ph2.type==='free'?'свой темп':'отдых';
+    $('woCount').textContent='';$('roTgt').textContent='—';$('roDev').textContent='—';
+    $('roDevBox').className='ro dev';
+  }else{
+    $('woTargetArc').setAttribute('stroke-dasharray',(C1*clamp(tg2,0,100)/100)+' '+C1);
+    const a=(-90+360*clamp(tg2,0,100)/100)*Math.PI/180;
+    const n=$('woNotch');
+    n.setAttribute('x1',100+80*Math.cos(a));n.setAttribute('y1',100+80*Math.sin(a));
+    n.setAttribute('x2',100+97*Math.cos(a));n.setAttribute('y2',100+97*Math.sin(a));
+    n.setAttribute('opacity','1');
+    $('woYou').innerHTML=Math.round(you)+'<small>%</small>';
+    $('woTargetLabel').textContent='цель '+Math.round(tg2)+'%';
+    $('woCount').innerHTML=showCount?countText:'';
+    $('roTgt').textContent=Math.round(tg2)+'%';
+    const d=Math.round(you-tg2);
+    $('roDev').textContent=(d>0?'+':'')+d;
+    $('roDevBox').className='ro dev'+(Math.abs(d)<=8?' hit':(Math.abs(d)>25?' far':''));
+    const inZ=Math.abs(you-tg2)<=8;
+    if(inZ&&!W.inZone&&now-W.hitAt>700){W.hitAt=now;snd.hit();vib(6)}
+    W.inZone=inZ;
+  }
+  $('roYou').textContent=Math.round(you)+'%';
+  W.traceAcc+=dt;
+  if(W.traceAcc>=.05){W.traceAcc=0;W.trace.push({t:now/1000,you:you,tg:tg2});
+    while(W.trace.length&&W.trace[0].t<now/1000-7)W.trace.shift()}
+  drawTrace(now/1000);
+  $('woElapsed').textContent=fmtDur((now-W.t0-W.pauseAcc)/1000);
+  $('woQuality').firstElementChild.style.width=((W.qN?W.qSum/W.qN:1)*100)+'%';
 }
 
-/* ================= кольцо и ввод ================= */
 const ring=$('ringWrap');
-$('ringArc').style.strokeDasharray=CIRC;$('ringArc').style.strokeDashoffset=CIRC;
-$('woArc').style.strokeDasharray=CIRC;$('woArc').style.strokeDashoffset=CIRC;
+$('ringArc').style.strokeDasharray=C0;$('ringArc').style.strokeDashoffset=C0;
+$('woArc').style.strokeDasharray=C2;$('woArc').style.strokeDashoffset=C2;
 let freeArmed=true;
 function bindPress(el){
   const down=e=>{if(!S.demo)return;sim.pressing=true;
     if(e.pointerId!=null&&el.setPointerCapture){try{el.setPointerCapture(e.pointerId)}catch(x){}}
-    setStrength(e);ring.classList.remove('idle')};
-  const move=e=>{if(sim.pressing)setStrength(e)};
+    setS(e);ring.classList.remove('idle')};
+  const move=e=>{if(sim.pressing)setS(e)};
   const up=()=>{sim.pressing=false;sim.strength=.85;if(!W.on)ring.classList.add('idle')};
-  function setStrength(e){const r=el.getBoundingClientRect();if(!r.height)return;
+  function setS(e){const r=el.getBoundingClientRect();if(!r.height)return;
     sim.strength=clamp(1-(e.clientY-r.top)/r.height,.05,1)}
-  el.addEventListener('pointerdown',down);
-  el.addEventListener('pointermove',move);
-  el.addEventListener('pointerup',up);
-  el.addEventListener('pointercancel',up);
+  el.addEventListener('pointerdown',down);el.addEventListener('pointermove',move);
+  el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);
   el.addEventListener('lostpointercapture',up);
   el.addEventListener('keydown',e=>{if((e.code==='Space'||e.code==='Enter')&&!e.repeat&&S.demo){e.preventDefault();sim.pressing=true;sim.strength=.85}});
   el.addEventListener('keyup',e=>{if(e.code==='Space'||e.code==='Enter')sim.pressing=false});
 }
 bindPress(ring);bindPress($('woRingWrap'));
 
-/* ================= BLE ================= */
 const SVC='4fafc201-1fb5-459e-8fcc-c5c9c331914b',CH_P='beb5483e-36e1-4688-b7f5-ea07361b26a8',CH_C='beb5483f-36e1-4688-b7f5-ea07361b26a8';
 function connUI(){
   const c=$('connChip');c.classList.toggle('on',ble.on);c.classList.toggle('busy',ble.busy);
   $('connText').textContent=ble.on?'Мяч':ble.busy?'Поиск…':S.demo?'Демо':'Нет мяча';
   $('connectTitle').textContent=ble.on?'Отключить мяч':'Подключить устройство';
   $('connectSub').textContent=ble.on?(ble.device.name||'MotusManus')+' · подключён':'Выберите ваш мяч в списке Bluetooth';
-  $('ringHint').innerHTML=ble.on?'Сжимайте мяч — данные идут по Bluetooth.<br>Калибровка учитывает высоту и нагрев от руки.':
-    S.demo?'Удерживайте круг, чтобы сжать мяч.<br>Ведите пальцем вверх или вниз для плавного усилия.':'Подключите мяч в настройках или включите демо-режим.';
+  $('ringHint').innerHTML=ble.on?'Сжимайте мяч — данные идут по Bluetooth.':S.demo?'Удерживайте круг. Ведите пальцем вверх или вниз для плавного усилия.':'Подключите мяч или включите демо-режим.';
   ring.style.cursor=ble.on?'default':'pointer';
+  $('demoBatRow').style.display=S.demo?'block':'none';
+  $('demoChgRow').style.display=S.demo?'flex':'none';
 }
 async function connect(){
   if(ble.on){ble.userDisc=true;try{ble.device.gatt.disconnect()}catch(e){}return}
-  if(!navigator.bluetooth){openSheet('<h3>Bluetooth на iPhone</h3><div class="desc">Safari не умеет Web Bluetooth. Подключить реальный мяч можно через бесплатный браузер <b>Bluefy — Web BLE Browser</b> из App Store: откройте эту страницу в нём и нажмите «Подключить».</div>'+
-    '<a class="btn pri" href="https://apps.apple.com/search?term=bluefy" target="_blank" rel="noopener" style="text-decoration:none">Найти Bluefy в App Store</a>'+
-    '<button class="btn sec" id="shDemo">Пока попробовать демо</button>');
+  if(!navigator.bluetooth){openSheet('<h3>Bluetooth на iPhone</h3><div class="desc">Safari не умеет Web Bluetooth. Откройте эту страницу в браузере <b>Bluefy — Web BLE Browser</b> из App Store.</div><a class="btn pri" href="https://apps.apple.com/search?term=bluefy" target="_blank" rel="noopener" style="text-decoration:none">Найти Bluefy</a><button class="btn sec" id="shDemo">Пока попробовать демо</button>');
     $('shDemo').addEventListener('click',()=>{S.demo=true;$('demoSw').checked=true;persist();connUI();closeSheet()});return}
   ble.busy=true;ble.userDisc=false;ble.retries=0;connUI();
-  try{
-    const dev=await navigator.bluetooth.requestDevice({filters:[{namePrefix:'Motus'}],optionalServices:[SVC]});
-    ble.device=dev;dev.addEventListener('gattserverdisconnected',onDisc);
-    await openGATT();
-  }catch(e){ble.busy=false;connUI();if(e&&e.name!=='NotFoundError')toast('Не удалось подключиться')}
+  try{const dev=await navigator.bluetooth.requestDevice({filters:[{namePrefix:'Motus'}],optionalServices:[SVC]});
+    ble.device=dev;dev.addEventListener('gattserverdisconnected',onDisc);await openGATT()}
+  catch(e){ble.busy=false;connUI();if(e&&e.name!=='NotFoundError')toast('Не удалось подключиться')}
 }
 async function openGATT(){
-  const srv=await ble.device.gatt.connect();
-  const svc=await srv.getPrimaryService(SVC);
+  const srv=await ble.device.gatt.connect(),svc=await srv.getPrimaryService(SVC);
   ble.press=await svc.getCharacteristic(CH_P);
   try{ble.cmd=await svc.getCharacteristic(CH_C)}catch(e){ble.cmd=null}
   await ble.press.startNotifications();
@@ -925,13 +844,22 @@ async function openGATT(){
   toast('Мяч подключён');setTimeout(()=>calibrate(true),1400);
 }
 function onNotify(ev){
-  try{const j=JSON.parse(new TextDecoder().decode(ev.target.value));
-    if(typeof j.p==='number')live.p=j.p;if(typeof j.t==='number')live.t=j.t;
-    ble.nc++;const n=performance.now();if(n-ble.nt>1000){live.hz=Math.round(ble.nc*1000/(n-ble.nt));ble.nc=0;ble.nt=n}
+  try{
+    const j=JSON.parse(new TextDecoder().decode(ev.target.value));
+    if(typeof j.p==='number')live.p=j.p;
+    if(typeof j.t==='number')live.t=j.t;
+    if(typeof j.bat==='number'){live.bat=clamp(j.bat,0,100);live.volt=typeof j.v==='number'?j.v:null;
+      live.chg=!!j.chg;live.batAt=Date.now();renderBattery()}
+    if(j.cal===1)$('calText').textContent='Калибровка…';
+    if(j.cal===0&&typeof j.b==='number')finishCal({p0:j.b,t0:(typeof j.t==='number'?j.t:live.t)});
+    else if(typeof j.b==='number'&&cal&&!calBusy&&Math.abs(j.b-cal.p0)>0.5){
+      cal.p0=j.b;cal.t0=live.t;cal.at=Date.now();persist();updateCalUI();toast('Мяч обнулён кнопкой')}
+    ble.nc++;const n=performance.now();
+    if(n-ble.nt>1000){live.hz=Math.round(ble.nc*1000/(n-ble.nt));ble.nc=0;ble.nt=n}
   }catch(e){}
 }
 function onDisc(){
-  ble.on=false;ble.press=null;connUI();
+  ble.on=false;ble.press=null;live.bat=null;live.volt=null;connUI();renderBattery();
   if(ble.userDisc){S.demo=true;$('demoSw').checked=true;persist();connUI();toast('Мяч отключён');return}
   if(ble.retries<3){ble.retries++;setTimeout(()=>{if(!ble.userDisc&&ble.device)openGATT().catch(onDisc)},1300)}
   else toast('Связь с мячом потеряна');
@@ -939,27 +867,78 @@ function onDisc(){
 $('connChip').addEventListener('click',connect);
 $('connectRow').addEventListener('click',connect);
 $('demoSw').checked=S.demo;
-$('demoSw').addEventListener('change',e=>{S.demo=e.target.checked;persist();connUI();if(S.demo&&ble.on){ble.userDisc=true;try{ble.device.gatt.disconnect()}catch(x){}}});
+$('demoSw').addEventListener('change',e=>{S.demo=e.target.checked;persist();connUI();renderBattery();
+  if(S.demo&&ble.on){ble.userDisc=true;try{ble.device.gatt.disconnect()}catch(x){}}});
 
-/* ================= калибровка ================= */
+let calBusy=false,calTimer=null,calSilent=false;
 function calibrate(silent){
-  cal={p0:live.p,t0:live.t,at:Date.now()};persist();
-  if(ble.cmd){try{ble.cmd.writeValue(new TextEncoder().encode('TARE'))}catch(e){}}
-  updateCalUI();if(!silent){toast('Калибровка выполнена: '+cal.p0.toFixed(1)+' гПа, '+cal.t0.toFixed(1)+' °C');snd.tick()}
+  if(calBusy)return;
+  if(!silent&&live.disp>12){toast('Отпустите мяч — обнуление только в покое');return}
+  calBusy=true;calSilent=!!silent;
+  const b=$('zeroBtn');if(b){b.disabled=true;b.textContent='Калибровка…'}
+  $('calText').textContent='Калибровка…';if(!silent)snd.tick();
+  if(ble.on&&ble.cmd){try{ble.cmd.writeValue(new TextEncoder().encode('TARE'))}catch(e){}
+    calTimer=setTimeout(()=>finishCal(null),4000)}
+  else{let s=0,n=0;const iv=setInterval(()=>{s+=live.p;n++;if(n>=14){clearInterval(iv);finishCal({p0:s/n,t0:live.t})}},50)}
+}
+function finishCal(res){
+  if(calTimer){clearTimeout(calTimer);calTimer=null}
+  if(!calBusy)return;calBusy=false;
+  const b=$('zeroBtn');if(b){b.disabled=false;b.textContent='⊙ Обнулить давление'}
+  if(res){cal={p0:res.p0,t0:res.t0,at:Date.now()};persist();updateCalUI();
+    if(!calSilent){toast('Обнулено: '+cal.p0.toFixed(1)+' гПа');snd.done()}}
+  else{updateCalUI();if(!calSilent)toast('Мяч не ответил — повторите')}
 }
 function updateCalUI(){
   if(!cal){$('calText').textContent='Нужна калибровка';$('calAgo').textContent='—';return}
   const min=Math.round((Date.now()-cal.at)/60000);
   $('calText').textContent='Откалибровано'+(min<1?' только что':' · '+min+' мин');
-  $('calAgo').textContent=min<1?'сейчас':min+' мин';
+  $('calAgo').textContent=(min<1?'сейчас':min+' мин')+' · '+cal.p0.toFixed(1);
 }
 $('calBtn').addEventListener('click',()=>calibrate(false));
+$('zeroBtn').addEventListener('click',()=>calibrate(false));
 $('tempSw').checked=S.tempComp;$('tempSw').addEventListener('change',e=>{S.tempComp=e.target.checked;persist()});
 $('autoZeroSw').checked=S.autoZero;$('autoZeroSw').addEventListener('change',e=>{S.autoZero=e.target.checked;persist()});
 $('sensRange').value=S.sens;$('sensLabel').textContent='Полное сжатие = '+S.sens+' гПа';
 $('sensRange').addEventListener('input',e=>{S.sens=parseFloat(e.target.value);$('sensLabel').textContent='Полное сжатие = '+S.sens+' гПа';persist()});
 
-/* ================= цель и уведомления ================= */
+let lowWarned=false;
+function batteryState(){
+  if(ble.on&&live.bat!=null)return{pct:live.bat,v:live.volt,chg:live.chg,src:'device'};
+  if(S.demo)return{pct:S.demoBat,v:3.2+S.demoBat/100*1.0,chg:S.demoChg,src:'demo'};
+  return null;
+}
+function renderBattery(){
+  const b=batteryState(),g=$('batGlyph');
+  if(!b){$('batPct').textContent='—';$('batVolt').textContent='';$('batEst').textContent='нет данных — подключите мяч';
+    $('batFill').style.width='0%';$('batChg').hidden=true;g.className='batglyph';$('batPill').textContent='— %';
+    $('batPill').className='pill';return}
+  const p=Math.round(b.pct);
+  $('batPct').textContent=p+'%';
+  $('batVolt').textContent=b.v?b.v.toFixed(2)+' В':'';
+  $('batFill').style.width=clamp(p,2,100)+'%';
+  $('batChg').hidden=!b.chg;
+  g.className='batglyph'+(b.chg?' chg':p<=5?' crit':p<=15?' low':'');
+  const hours=S.cap*p/100/35;
+  const hh=Math.floor(hours),mm=Math.round((hours-hh)*60);
+  $('batEst').textContent=b.chg?'идёт зарядка · '+S.cap+' мАч':(p<=0?'разряжен':'≈ '+(hh>0?hh+' ч ':'')+mm+' мин работы · '+S.cap+' мАч');
+  const pill=$('batPill');
+  pill.textContent=(b.chg?'⚡ ':'')+p+' %';
+  pill.className='pill'+(b.chg?' b':p<=5?' c':p<=15?' a':'');
+  if(p<=15&&!b.chg&&!lowWarned){lowWarned=true;toast(p<=5?'Аккумулятор почти разряжен':'Заряд ниже 15% — пора зарядить')}
+  if(p>20||b.chg)lowWarned=false;
+}
+$('capVal').textContent=S.cap;
+$('capMinus').addEventListener('click',()=>{S.cap=clamp(S.cap-20,100,2000);$('capVal').textContent=S.cap;persist();renderBattery();vib(5)});
+$('capPlus').addEventListener('click',()=>{S.cap=clamp(S.cap+20,100,2000);$('capVal').textContent=S.cap;persist();renderBattery();vib(5)});
+$('divVal').textContent=S.div.toFixed(1);
+$('divMinus').addEventListener('click',()=>{S.div=clamp(+(S.div-0.1).toFixed(1),1,5);$('divVal').textContent=S.div.toFixed(1);persist();vib(5)});
+$('divPlus').addEventListener('click',()=>{S.div=clamp(+(S.div+0.1).toFixed(1),1,5);$('divVal').textContent=S.div.toFixed(1);persist();vib(5)});
+$('demoBatRange').value=S.demoBat;$('demoBatLabel').textContent=S.demoBat+' %';
+$('demoBatRange').addEventListener('input',e=>{S.demoBat=+e.target.value;$('demoBatLabel').textContent=S.demoBat+' %';persist();renderBattery()});
+$('demoChgSw').checked=S.demoChg;
+$('demoChgSw').addEventListener('change',e=>{S.demoChg=e.target.checked;persist();renderBattery()});
+
 $('goalMinus').addEventListener('click',()=>{S.goal=clamp(S.goal-10,10,300);persist();renderToday();vib(5)});
 $('goalPlus').addEventListener('click',()=>{S.goal=clamp(S.goal+10,10,300);persist();renderToday();vib(5)});
 $('notifTime').value=S.notifTime;
@@ -967,184 +946,105 @@ $('notifTime').addEventListener('change',e=>{S.notifTime=e.target.value;persist(
 $('notifSw').checked=S.notif;
 $('notifSw').addEventListener('change',async e=>{
   if(e.target.checked){
-    if(!('Notification' in window)){e.target.checked=false;toast('Уведомления не поддерживаются здесь');return}
+    if(!('Notification' in window)){e.target.checked=false;toast('Уведомления не поддерживаются');return}
     const p=await Notification.requestPermission();
-    if(p!=='granted'){e.target.checked=false;S.notif=false;persist();$('notifSub').textContent='Разрешение не выдано — включите в настройках iPhone';return}
-    S.notif=true;
-  }else S.notif=false;
-  persist();
-});
+    if(p!=='granted'){e.target.checked=false;S.notif=false;persist();$('notifSub').textContent='Разрешение не выдано';return}
+    S.notif=true}else S.notif=false;persist()});
 function notify(title,body){
-  if('Notification' in window&&Notification.permission==='granted'){
-    try{new Notification(title,{body,icon:$('ati').href,tag:'motus'})}catch(e){toast(title+' — '+body)}
-  }else toast(title+' — '+body);
-}
-$('notifTest').addEventListener('click',()=>notify('Motus','Мяч ждёт: осталось '+(Math.max(0,S.goal-(days[today()]||0)))+' сжатий до цели.'));
+  if('Notification' in window&&Notification.permission==='granted'){try{new Notification(title,{body,icon:$('ati').href,tag:'motus'})}catch(e){toast(title+' — '+body)}}
+  else toast(title+' — '+body)}
+$('notifTest').addEventListener('click',()=>notify('Motus','Осталось '+Math.max(0,S.goal-(days[today()]||0))+' сжатий до цели.'));
 setInterval(()=>{
   if(!S.notif||S.lastNotif===today())return;
-  const now=new Date();const [h,m]=S.notifTime.split(':').map(Number);
-  const t=days[today()]||0;
+  const now=new Date(),[h,m]=S.notifTime.split(':').map(Number),t=days[today()]||0;
   if((now.getHours()>h||(now.getHours()===h&&now.getMinutes()>=m))&&t<S.goal){
-    S.lastNotif=today();persist();
-    notify('Motus · цель дня','Осталось '+(S.goal-t)+' сжатий. Пара минут с мячом — и цель закрыта.');
-  }
+    S.lastNotif=today();persist();notify('Motus · цель дня','Осталось '+(S.goal-t)+' сжатий. Пара минут с мячом — и цель закрыта.')}
 },20000);
 
-/* ================= установка / прошивка / сброс ================= */
-$('installRow').addEventListener('click',()=>openSheet(
-  '<h3>Иконка на экране «Домой»</h3><div class="desc">Motus работает как обычное приложение: своя иконка, полный экран, без адресной строки.</div>'+
-  '<div class="steps-i"><span class="n">1</span><div>Откройте эту страницу в <b>Safari</b> (демо) или <b>Bluefy</b> (для Bluetooth-мяча).</div></div>'+
-  '<div class="steps-i"><span class="n">2</span><div>Нажмите <b>«Поделиться»</b> — квадрат со стрелкой вверх.</div></div>'+
-  '<div class="steps-i"><span class="n">3</span><div>Выберите <b>«На экран Домой»</b> → «Добавить». Иконка Motus появится среди приложений.</div></div>'+
-  '<div class="steps-i"><span class="n">4</span><div>Запускайте с иконки: приложение откроется на весь экран, данные и история сохраняются на телефоне.</div></div>'+
-  '<div class="desc" style="margin-top:12px">Страница должна быть размещена по HTTPS (подойдёт GitHub Pages).</div>'));
-const FIRMWARE=`/* MOTUS MANUS — мяч: ESP32-C3 SuperMini + BMP390
- * Библиотеки: Adafruit BMP3XX, Adafruit Unified Sensor, NimBLE-Arduino 1.4.x
- * Плата: ESP32C3 Dev Module, USB CDC On Boot: Enabled
- * BMP390: SDA->GPIO6, SCL->GPIO7, VIN->3V3, GND->GND
- * TP4056: OUT+->5V, OUT-->GND (R3=4.7к для малых LiPo!)
- * Калибровка и температурная компенсация — в приложении.
- */
-#include <Wire.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BMP3XX.h>
-#include <NimBLEDevice.h>
-static const int SDA_PIN=6, SCL_PIN=7, LED_PIN=8;
-#define SERVICE_UUID "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
-#define PRESS_UUID   "beb5483e-36e1-4688-b7f5-ea07361b26a8"
-#define CMD_UUID     "beb5483f-36e1-4688-b7f5-ea07361b26a8"
-Adafruit_BMP3XX bmp;
-NimBLEServer* server=nullptr;
-NimBLECharacteristic* pressChar=nullptr;
-float baseline=1013.25f;
-volatile bool tareReq=false;
-uint32_t lastSend=0,lastLed=0; bool ledOn=false;
-class CmdCB:public NimBLECharacteristicCallbacks{
-  void onWrite(NimBLECharacteristic* c)override{
-    if(c->getValue()=="TARE")tareReq=true;
-  }
-};
-float measureBaseline(){float s=0;int n=0;
-  for(int i=0;i<24;i++){if(bmp.performReading()){s+=bmp.pressure/100.0f;n++;}delay(30);}
-  return n?s/n:1013.25f;}
-void setup(){
-  Serial.begin(115200);pinMode(LED_PIN,OUTPUT);
-  Wire.begin(SDA_PIN,SCL_PIN);Wire.setClock(400000);
-  bool ok=bmp.begin_I2C(0x77,&Wire)||bmp.begin_I2C(0x76,&Wire);
-  if(!ok){while(true){digitalWrite(LED_PIN,!digitalRead(LED_PIN));delay(120);}}
-  bmp.setTemperatureOversampling(BMP3_OVERSAMPLING_2X);
-  bmp.setPressureOversampling(BMP3_OVERSAMPLING_8X);
-  bmp.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_3);
-  bmp.setOutputDataRate(BMP3_ODR_50_HZ);
-  baseline=measureBaseline();
-  NimBLEDevice::init("MotusManus");
-  NimBLEDevice::setPower(ESP_PWR_LVL_P9);
-  server=NimBLEDevice::createServer();
-  NimBLEService* svc=server->createService(SERVICE_UUID);
-  pressChar=svc->createCharacteristic(PRESS_UUID,NIMBLE_PROPERTY::READ|NIMBLE_PROPERTY::NOTIFY);
-  NimBLECharacteristic* cmd=svc->createCharacteristic(CMD_UUID,NIMBLE_PROPERTY::WRITE);
-  cmd->setCallbacks(new CmdCB());
-  svc->start();
-  NimBLEAdvertising* adv=NimBLEDevice::getAdvertising();
-  adv->addServiceUUID(SERVICE_UUID);adv->enableScanResponse(true);adv->start();
-}
-void loop(){
-  uint32_t now=millis();
-  if(tareReq){tareReq=false;baseline=measureBaseline();}
-  if(now-lastSend>=50){lastSend=now;
-    if(bmp.performReading()){
-      float p=bmp.pressure/100.0f,d=p-baseline;
-      char buf[96];
-      snprintf(buf,sizeof(buf),"{\\"p\\":%.2f,\\"d\\":%.3f,\\"t\\":%.1f}",p,d,bmp.temperature);
-      pressChar->setValue((uint8_t*)buf,strlen(buf));
-      if(server->getConnectedCount()>0)pressChar->notify();
-    }}
-  uint32_t period=server->getConnectedCount()?900:250;
-  if(now-lastLed>=period){lastLed=now;ledOn=!ledOn;digitalWrite(LED_PIN,ledOn);}
-}`;
+$('installRow').addEventListener('click',()=>openSheet('<h3>Иконка на экране «Домой»</h3><div class="desc">Motus работает как обычное приложение: своя иконка, полный экран.</div><div class="steps-i"><span class="n">1</span><div>Откройте страницу в <b>Bluefy</b> (для Bluetooth) или Safari.</div></div><div class="steps-i"><span class="n">2</span><div>Нажмите <b>«Поделиться»</b>.</div></div><div class="steps-i"><span class="n">3</span><div>Выберите <b>«На экран Домой»</b> → «Добавить».</div></div>'));
+const FIRMWARE=String.raw`import machine, time, struct, bluetooth
+SDA, SCL, LED_PIN, BTN_PIN = 6, 7, 8, 10
+BAT_PIN, CHG_PIN = 3, 4
+DIVIDER = 2.0
+i2c = machine.I2C(0, sda=machine.Pin(SDA), scl=machine.Pin(SCL), freq=400000)
+led = machine.Pin(LED_PIN, machine.Pin.OUT, value=1)
+btn = machine.Pin(BTN_PIN, machine.Pin.IN, machine.Pin.PULL_UP)
+chg = machine.Pin(CHG_PIN, machine.Pin.IN, machine.Pin.PULL_UP)
+adc = machine.ADC(machine.Pin(BAT_PIN)); adc.atten(machine.ADC.ATTN_11DB)
+CURVE = ((4.20,100),(4.10,90),(4.00,80),(3.92,70),(3.85,60),(3.79,50),(3.73,40),(3.68,30),(3.61,20),(3.53,12),(3.45,6),(3.35,2),(3.20,0))
+def bat_volts():
+    s = 0
+    for _ in range(8):
+        s += adc.read_uv(); time.sleep_ms(2)
+    return (s / 8) / 1000000.0 * DIVIDER
+def bat_pct(v):
+    if v >= CURVE[0][0]: return 100
+    for i in range(len(CURVE)-1):
+        v1,p1 = CURVE[i]; v2,p2 = CURVE[i+1]
+        if v >= v2: return int(p2 + (p1-p2)*(v-v2)/(v1-v2))
+    return 0
+# ... полный код прошивки — в файле main.py, который вы заливаете через mpremote`;
 $('fwRow').addEventListener('click',()=>{
-  openSheet('<h3>Прошивка мяча</h3><div class="desc">ESP32-C3 SuperMini + BMP390. Отправляет давление и температуру 20 раз в секунду по BLE. Калибровку нуля и компенсацию нагрева выполняет приложение.</div>'+
-    '<button class="btn pri" id="fwCopy">Скопировать код</button><pre class="fw" id="fwPre"></pre>');
+  openSheet('<h3>Прошивка мяча</h3><div class="desc">Отправляет давление, температуру, ноль и заряд аккумулятора. Делитель: BAT+ → 100 кОм → GPIO3 → 100 кОм → GND. CHRG модуля TP4056 → GPIO4 (опционально).</div><button class="btn pri" id="fwCopy">Скопировать фрагмент</button><pre class="fw" id="fwPre"></pre>');
   $('fwPre').textContent=FIRMWARE;
-  $('fwCopy').addEventListener('click',()=>{
-    const done=()=>toast('Код скопирован — вставьте в Arduino IDE');
+  $('fwCopy').addEventListener('click',()=>{const done=()=>toast('Скопировано');
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(FIRMWARE).then(done).catch(()=>fb());else fb();
-    function fb(){const t=document.createElement('textarea');t.value=FIRMWARE;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}t.remove()}
-  });
-});
+    function fb(){const t=document.createElement('textarea');t.value=FIRMWARE;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');done()}catch(e){}t.remove()}})});
 $('resetRow').addEventListener('click',()=>{
-  openSheet('<h3>Сбросить всё?</h3><div class="desc">История тренировок, счётчики по дням, цель и калибровка будут удалены. Настройки устройства останутся.</div>'+
-    '<button class="btn danger" id="rsYes">Сбросить данные</button><button class="btn sec" id="rsNo">Отмена</button>');
-  const backup={sessions:sessions.slice(),days:Object.assign({},days),cal:cal?Object.assign({},cal):null};
+  openSheet('<h3>Сбросить всё?</h3><div class="desc">История, счётчики, цель и калибровка будут удалены.</div><button class="btn danger" id="rsYes">Сбросить</button><button class="btn sec" id="rsNo">Отмена</button>');
+  const backup={s:sessions.slice(),d:Object.assign({},days),c:cal?Object.assign({},cal):null};
   $('rsNo').addEventListener('click',closeSheet);
-  $('rsYes').addEventListener('click',()=>{
-    sessions=[];days={};cal=null;persist();renderToday();renderHist();updateCalUI();closeSheet();
-    toast('Данные сброшены','Вернуть',()=>{sessions=backup.sessions;days=backup.days;cal=backup.cal;persist();renderToday();renderHist();updateCalUI()});
-  });
-});
+  $('rsYes').addEventListener('click',()=>{sessions=[];days={};cal=null;persist();renderToday();renderHist();updateCalUI();closeSheet();
+    toast('Данные сброшены','Вернуть',()=>{sessions=backup.s;days=backup.d;cal=backup.c;persist();renderToday();renderHist();updateCalUI()})})});
 
-/* ================= главный цикл ================= */
-let last=performance.now(),uiAcc=0,calAcc=0;
+let last=performance.now(),uiAcc=0,calAcc=0,batAcc=0;
 function frame(now){
   requestAnimationFrame(frame);
   const dt=Math.min(.05,(now-last)/1000);last=now;
   if(document.hidden)return;
-
-  // демо-физика мяча с нагревом от руки
   if(S.demo&&!ble.on){
-    if(!W.auto||!W.on){sim.target=sim.pressing?sim.strength:0}
-    const k=1-Math.exp(-dt*5.5);
-    sim.val=lerp(sim.val,sim.target,k);
+    if(!W.auto||!W.on)sim.target=sim.pressing?sim.strength:0;
+    sim.val=lerp(sim.val,sim.target,1-Math.exp(-dt*5.5));
     sim.heat=clamp(sim.heat+(sim.val>.25?dt*.05:-dt*.02),0,2.2);
     live.t=24.5+sim.heat+Math.sin(now/11000)*.12;
     const thermal=(cal?cal.p0:1013.25)*((live.t+273.15)/((cal?cal.t0:24.5)+273.15)-1);
     live.p=(cal?cal.p0:1013.25)+Math.max(0,sim.val*9)+thermal+(Math.random()-.5)*.05;
     live.hz=20;
+    batAcc+=dt;
+    if(batAcc>=1){batAcc=0;
+      S.demoBat=clamp(S.demoBat+(S.demoChg?.08:-.004),0,100);
+      $('demoBatRange').value=Math.round(S.demoBat);$('demoBatLabel').textContent=Math.round(S.demoBat)+' %';
+      renderBattery()}
   }
-  // компенсация и дельта
-  if(cal){
-    live.thermal=cal.p0*((live.t+273.15)/(cal.t0+273.15)-1);
-    live.delta=(live.p-cal.p0)-(S.tempComp?live.thermal:0);
-  }else live.delta=0;
+  if(cal){live.thermal=cal.p0*((live.t+273.15)/(cal.t0+273.15)-1);
+    live.delta=(live.p-cal.p0)-(S.tempComp?live.thermal:0)}else live.delta=0;
   live.delta=Math.max(-1,live.delta);
-  const targetPct=clamp(live.delta/S.sens*100,0,100);
-  live.disp=lerp(live.disp,targetPct,1-Math.exp(-dt/.09));
-
-  // авто-ноль в покое
+  live.disp=lerp(live.disp,clamp(live.delta/S.sens*100,0,100),1-Math.exp(-dt/.09));
   if(cal&&S.autoZero){
     if(live.disp<4){live.idleSince=live.idleSince||now;
-      if(now-live.idleSince>9000){cal.p0=lerp(cal.p0,live.p-live.thermal,dt/45);}}
-    else live.idleSince=now;
-  }
-  // свободные сжатия вне тренировки
+      if(now-live.idleSince>9000)cal.p0=lerp(cal.p0,live.p-live.thermal,dt/45)}
+    else live.idleSince=now}
   if(!W.on){
     if(!freeArmed&&live.disp<18)freeArmed=true;
-    if(freeArmed&&live.disp>45){freeArmed=false;addRep();snd.rep();vib(10)}
-  }
-  updateWorkout(dt);
-
-  // кольцо
-  $('ringArc').style.strokeDashoffset=CIRC*(1-live.disp/100);
+    if(freeArmed&&live.disp>45){freeArmed=false;addRep();snd.rep();vib(10)}}
+  updateWorkout(dt,now);
+  $('ringArc').style.strokeDashoffset=C0*(1-live.disp/100);
   ring.classList.toggle('idle',live.disp<3&&!sim.pressing);
-
   uiAcc+=dt;
   if(uiAcc>=.1){uiAcc=0;
     $('livePct').innerHTML=Math.round(live.disp)+'<small>%</small>';
     $('liveDelta').textContent='Δ '+live.delta.toFixed(2)+' гПа';
     $('tempPill').textContent=live.t.toFixed(1)+' °C';
-    $('compPill').textContent='компенсация '+(S.tempComp?live.thermal.toFixed(2):'выкл');
     $('devLive').textContent=live.p.toFixed(1)+' гПа · '+live.t.toFixed(1)+' °C';
-    $('devRate').textContent=(ble.on||S.demo)?live.hz+' Гц':'—';
-  }
+    $('devRate').textContent=(ble.on||S.demo)?live.hz+' Гц':'—'}
   calAcc+=dt;if(calAcc>=15){calAcc=0;updateCalUI()}
 }
 requestAnimationFrame(frame);
 document.addEventListener('visibilitychange',()=>{last=performance.now()});
+window.addEventListener('resize',()=>{sizeTrace();if($('v-hist').classList.contains('on'))drawWeek()});
 
-/* ================= старт ================= */
 if(!cal)cal={p0:1013.25,t0:24.5,at:Date.now()};
-setSound(S.sound);connUI();renderProtos();renderToday();updateCalUI();
-$('woTarget').setAttribute('stroke-dasharray','0 '+CIRC);
+setSound(S.sound);connUI();renderProtos();renderToday();updateCalUI();renderBattery();sizeTrace();
 })();
 </script>
 </body>
