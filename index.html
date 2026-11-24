@@ -78,7 +78,7 @@ main{flex:1;padding:18px 18px calc(var(--tab-h) + 26px + env(safe-area-inset-bot
 .card .pad{padding:18px}
 .card-t{font-size:13px;font-weight:600;color:var(--sub);display:flex;align-items:center;gap:8px}
 .card-t .r{margin-left:auto;font-weight:500;color:var(--faint);font-size:12px}
-#ringCard .pad{display:flex;flex-direction:column;align-items:center;padding:22px 18px 18px}
+#ringCard .pad{display:flex;flex-direction:column;align-items:center;padding:22px 18px 20px}
 #ringWrap{position:relative;width:min(250px,68vw);aspect-ratio:1;touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer}
 #ringWrap svg{width:100%;height:100%;display:block;overflow:visible}
 #ringWrap.idle #ringBreath{animation:breath 4.2s ease-in-out infinite}
@@ -179,7 +179,6 @@ input[type=range]::-moz-range-track{height:5px;border-radius:3px;background:var(
 input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:1px solid var(--line2);box-shadow:0 1px 5px rgba(43,47,46,.2)}
 .note{font-size:12px;color:var(--sub);line-height:1.55;padding:10px 16px 14px}
 .note b{color:var(--ink)}
-/* батарея */
 .batwrap{display:flex;align-items:center;gap:12px;width:100%}
 .batglyph{position:relative;width:42px;height:22px;border:2px solid var(--sage-mid);border-radius:6px;flex:none;padding:2px}
 .batglyph::after{content:"";position:absolute;right:-5px;top:6px;width:3px;height:8px;border-radius:0 2px 2px 0;background:var(--sage-mid)}
@@ -193,7 +192,6 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .batinfo .v{font-size:12.5px;color:var(--sub);font-weight:500}
 .batinfo .est{font-size:12px;color:var(--sub);margin-top:2px}
 .battag{font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:8px;background:var(--blue-soft);color:var(--blue)}
-/* тренировка */
 #wo{position:fixed;inset:0;z-index:50;background:var(--paper);display:none;flex-direction:column;max-width:480px;margin:0 auto}
 #wo.on{display:flex;animation:vin .3s var(--ease)}
 #wo header{display:flex;align-items:center;gap:10px;padding:calc(12px + env(safe-area-inset-top)) 18px 12px;border-bottom:1px solid var(--line)}
@@ -306,7 +304,6 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         <span class="pill b" id="tempPill">24.5 °C</span>
         <span class="pill" id="batPill">— %</span>
       </div>
-      <button class="btn sec sm" id="zeroBtn" style="margin-top:14px;width:100%">⊙ Обнулить давление</button>
     </div></div>
     <div class="card"><div class="pad">
       <div class="card-t">Прогресс дня<span class="r" id="goalLabel">цель 60</span></div>
@@ -346,17 +343,12 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
         <div class="batglyph" id="batGlyph"><i id="batFill" style="width:0%"></i></div>
         <div class="batinfo"><div class="top"><span class="p" id="batPct">—</span><span class="v" id="batVolt"></span><span class="battag" id="batChg" hidden>зарядка</span></div><div class="est" id="batEst">нет данных</div></div>
       </div></div>
-      <div class="row"><div class="lb"><b>Ёмкость аккумулятора</b><span>для оценки оставшегося времени</span></div>
-        <div class="stepper"><button id="capMinus">−</button><span class="v" id="capVal">320</span><button id="capPlus">＋</button></div></div>
-      <div class="row"><div class="lb"><b>Делитель напряжения</b><span>R1 = R2 = 100 кОм → коэффициент 2.0</span></div>
-        <div class="stepper"><button id="divMinus">−</button><span class="v" id="divVal">2.0</span><button id="divPlus">＋</button></div></div>
       <div class="row" id="demoBatRow" style="display:block"><div class="lb" style="margin-bottom:6px"><b>Заряд в демо-режиме</b><span id="demoBatLabel">87 %</span></div>
         <input type="range" id="demoBatRange" min="0" max="100" step="1" value="87"></div>
       <div class="row" id="demoChgRow"><div class="lb"><b>Заряжается (демо)</b><span>проверить индикатор зарядки</span></div><span class="switch"><input type="checkbox" id="demoChgSw"><i></i></span></div>
-    </div>
-    <p class="note">Заряд измеряется делителем на двух резисторах: <b>BAT+ → 100 кОм → GPIO3 → 100 кОм → GND</b>. Провод <b>CHRG</b> модуля TP4056 на <b>GPIO4</b> добавляет определение зарядки. Без делителя показания будут неверными.</p></div>
+    </div></div>
     <div class="group"><div class="group-t">Калибровка</div><div class="rows">
-      <button class="row tap" id="calBtn"><div class="lb"><b>Калибровать давление</b><span>Обнулить мяч на текущей высоте. Не сжимайте мяч.</span></div><span class="val" id="calAgo">—</span></button>
+      <button class="row tap" id="calBtn"><div class="lb"><b>Калибровать давление</b><span>Обнулить мяч на текущей высоте</span></div><span class="val" id="calAgo">—</span></button>
       <div class="row"><div class="lb"><b>Компенсация температуры</b><span>Убирает нагрев от руки</span></div><span class="switch"><input type="checkbox" id="tempSw" checked><i></i></span></div>
       <div class="row"><div class="lb"><b>Авто-ноль в покое</b><span>Подстраивает ноль, когда мяч не сжимают</span></div><span class="switch"><input type="checkbox" id="autoZeroSw" checked><i></i></span></div>
       <div class="row" style="display:block"><div class="lb" style="margin-bottom:6px"><b>Чувствительность</b><span id="sensLabel">Полное сжатие = 6 гПа</span></div><input type="range" id="sensRange" min="2" max="15" step="0.5" value="6"></div>
@@ -372,7 +364,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
     <div class="group"><div class="group-t">Приложение</div><div class="rows">
       <button class="row tap" id="installRow"><div class="lb"><b>Иконка на экране «Домой»</b><span>Как установить Motus</span></div>
         <svg class="chev" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m1 1 6 6-6 6"/></svg></button>
-      <button class="row tap" id="fwRow"><div class="lb"><b>Прошивка ESP32-C3</b><span>Код с зарядом и обнулением</span></div>
+      <button class="row tap" id="fwRow"><div class="lb"><b>Прошивка ESP32-C3</b><span>Справка по коду мяча</span></div>
         <svg class="chev" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m1 1 6 6-6 6"/></svg></button>
       <button class="row tap" id="resetRow"><div class="lb"><b style="color:var(--clay)">Сбросить все данные</b><span>История, цели и калибровка</span></div></button>
     </div></div>
@@ -438,8 +430,9 @@ const fmtTime=ts=>new Intl.DateTimeFormat('ru-RU',{hour:'2-digit',minute:'2-digi
 const fmtDay=ts=>new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long'}).format(new Date(ts));
 const vib=ms=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
 const C1=2*Math.PI*88, C2=2*Math.PI*70, C0=2*Math.PI*86;
+const CAP=320, DRAW=35;
 
-const S=Object.assign({goal:60,sens:6,tempComp:true,autoZero:true,demo:true,sound:true,notif:false,notifTime:'19:00',lastNotif:'',cap:320,div:2.0,demoBat:87,demoChg:false},store.get('mm3_set',{}));
+const S=Object.assign({goal:60,sens:6,tempComp:true,autoZero:true,demo:true,sound:true,notif:false,notifTime:'19:00',lastNotif:'',demoBat:87,demoChg:false},store.get('mm3_set',{}));
 let sessions=store.get('mm3_sess',null);
 let days=store.get('mm3_days',{});
 let cal=store.get('mm3_cal',null);
@@ -716,16 +709,13 @@ function drawTrace(now){
   trx.fillText('100',8,Y(100)+8);trx.fillText('0',8,Y(0)-2);
   const pts=W.trace.filter(p=>p.t>=now-SPAN);
   if(pts.length<2)return;
-  // полоса допуска
   trx.beginPath();let started=false;
   pts.forEach(p=>{if(p.tg==null)return;const x=X(p.t),y=Y(Math.min(100,p.tg+8));started?trx.lineTo(x,y):(trx.moveTo(x,y),started=true)});
   for(let i=pts.length-1;i>=0;i--){const p=pts[i];if(p.tg==null)continue;trx.lineTo(X(p.t),Y(Math.max(0,p.tg-8)))}
   if(started){trx.closePath();trx.fillStyle='rgba(157,184,172,.18)';trx.fill()}
-  // цель пунктиром
   trx.strokeStyle='#9DB8AC';trx.lineWidth=2;trx.setLineDash([4,3]);trx.beginPath();started=false;
   pts.forEach(p=>{if(p.tg==null){started=false;return}const x=X(p.t),y=Y(p.tg);started?trx.lineTo(x,y):(trx.moveTo(x,y),started=true)});
   trx.stroke();trx.setLineDash([]);
-  // ваше усилие
   trx.strokeStyle='#4E6B5F';trx.lineWidth=2.4;trx.lineJoin='round';trx.beginPath();
   pts.forEach((p,i)=>{const x=X(p.t),y=Y(p.you);i?trx.lineTo(x,y):trx.moveTo(x,y)});trx.stroke();
   const last=pts[pts.length-1];
@@ -850,10 +840,6 @@ function onNotify(ev){
     if(typeof j.t==='number')live.t=j.t;
     if(typeof j.bat==='number'){live.bat=clamp(j.bat,0,100);live.volt=typeof j.v==='number'?j.v:null;
       live.chg=!!j.chg;live.batAt=Date.now();renderBattery()}
-    if(j.cal===1)$('calText').textContent='Калибровка…';
-    if(j.cal===0&&typeof j.b==='number')finishCal({p0:j.b,t0:(typeof j.t==='number'?j.t:live.t)});
-    else if(typeof j.b==='number'&&cal&&!calBusy&&Math.abs(j.b-cal.p0)>0.5){
-      cal.p0=j.b;cal.t0=live.t;cal.at=Date.now();persist();updateCalUI();toast('Мяч обнулён кнопкой')}
     ble.nc++;const n=performance.now();
     if(n-ble.nt>1000){live.hz=Math.round(ble.nc*1000/(n-ble.nt));ble.nc=0;ble.nt=n}
   }catch(e){}
@@ -870,33 +856,19 @@ $('demoSw').checked=S.demo;
 $('demoSw').addEventListener('change',e=>{S.demo=e.target.checked;persist();connUI();renderBattery();
   if(S.demo&&ble.on){ble.userDisc=true;try{ble.device.gatt.disconnect()}catch(x){}}});
 
-let calBusy=false,calTimer=null,calSilent=false;
 function calibrate(silent){
-  if(calBusy)return;
-  if(!silent&&live.disp>12){toast('Отпустите мяч — обнуление только в покое');return}
-  calBusy=true;calSilent=!!silent;
-  const b=$('zeroBtn');if(b){b.disabled=true;b.textContent='Калибровка…'}
-  $('calText').textContent='Калибровка…';if(!silent)snd.tick();
-  if(ble.on&&ble.cmd){try{ble.cmd.writeValue(new TextEncoder().encode('TARE'))}catch(e){}
-    calTimer=setTimeout(()=>finishCal(null),4000)}
-  else{let s=0,n=0;const iv=setInterval(()=>{s+=live.p;n++;if(n>=14){clearInterval(iv);finishCal({p0:s/n,t0:live.t})}},50)}
-}
-function finishCal(res){
-  if(calTimer){clearTimeout(calTimer);calTimer=null}
-  if(!calBusy)return;calBusy=false;
-  const b=$('zeroBtn');if(b){b.disabled=false;b.textContent='⊙ Обнулить давление'}
-  if(res){cal={p0:res.p0,t0:res.t0,at:Date.now()};persist();updateCalUI();
-    if(!calSilent){toast('Обнулено: '+cal.p0.toFixed(1)+' гПа');snd.done()}}
-  else{updateCalUI();if(!calSilent)toast('Мяч не ответил — повторите')}
+  cal={p0:live.p,t0:live.t,at:Date.now()};persist();
+  if(ble.cmd){try{ble.cmd.writeValue(new TextEncoder().encode('TARE'))}catch(e){}}
+  updateCalUI();
+  if(!silent){toast('Калибровка выполнена: '+cal.p0.toFixed(1)+' гПа');snd.tick()}
 }
 function updateCalUI(){
   if(!cal){$('calText').textContent='Нужна калибровка';$('calAgo').textContent='—';return}
   const min=Math.round((Date.now()-cal.at)/60000);
   $('calText').textContent='Откалибровано'+(min<1?' только что':' · '+min+' мин');
-  $('calAgo').textContent=(min<1?'сейчас':min+' мин')+' · '+cal.p0.toFixed(1);
+  $('calAgo').textContent=min<1?'сейчас':min+' мин';
 }
 $('calBtn').addEventListener('click',()=>calibrate(false));
-$('zeroBtn').addEventListener('click',()=>calibrate(false));
 $('tempSw').checked=S.tempComp;$('tempSw').addEventListener('change',e=>{S.tempComp=e.target.checked;persist()});
 $('autoZeroSw').checked=S.autoZero;$('autoZeroSw').addEventListener('change',e=>{S.autoZero=e.target.checked;persist()});
 $('sensRange').value=S.sens;$('sensLabel').textContent='Полное сжатие = '+S.sens+' гПа';
@@ -904,8 +876,8 @@ $('sensRange').addEventListener('input',e=>{S.sens=parseFloat(e.target.value);$(
 
 let lowWarned=false;
 function batteryState(){
-  if(ble.on&&live.bat!=null)return{pct:live.bat,v:live.volt,chg:live.chg,src:'device'};
-  if(S.demo)return{pct:S.demoBat,v:3.2+S.demoBat/100*1.0,chg:S.demoChg,src:'demo'};
+  if(ble.on&&live.bat!=null)return{pct:live.bat,v:live.volt,chg:live.chg};
+  if(S.demo)return{pct:S.demoBat,v:3.2+S.demoBat/100*1.0,chg:S.demoChg};
   return null;
 }
 function renderBattery(){
@@ -919,21 +891,14 @@ function renderBattery(){
   $('batFill').style.width=clamp(p,2,100)+'%';
   $('batChg').hidden=!b.chg;
   g.className='batglyph'+(b.chg?' chg':p<=5?' crit':p<=15?' low':'');
-  const hours=S.cap*p/100/35;
-  const hh=Math.floor(hours),mm=Math.round((hours-hh)*60);
-  $('batEst').textContent=b.chg?'идёт зарядка · '+S.cap+' мАч':(p<=0?'разряжен':'≈ '+(hh>0?hh+' ч ':'')+mm+' мин работы · '+S.cap+' мАч');
+  const hours=CAP*p/100/DRAW,hh=Math.floor(hours),mm=Math.round((hours-hh)*60);
+  $('batEst').textContent=b.chg?'идёт зарядка':(p<=0?'разряжен':'≈ '+(hh>0?hh+' ч ':'')+mm+' мин работы');
   const pill=$('batPill');
   pill.textContent=(b.chg?'⚡ ':'')+p+' %';
   pill.className='pill'+(b.chg?' b':p<=5?' c':p<=15?' a':'');
   if(p<=15&&!b.chg&&!lowWarned){lowWarned=true;toast(p<=5?'Аккумулятор почти разряжен':'Заряд ниже 15% — пора зарядить')}
   if(p>20||b.chg)lowWarned=false;
 }
-$('capVal').textContent=S.cap;
-$('capMinus').addEventListener('click',()=>{S.cap=clamp(S.cap-20,100,2000);$('capVal').textContent=S.cap;persist();renderBattery();vib(5)});
-$('capPlus').addEventListener('click',()=>{S.cap=clamp(S.cap+20,100,2000);$('capVal').textContent=S.cap;persist();renderBattery();vib(5)});
-$('divVal').textContent=S.div.toFixed(1);
-$('divMinus').addEventListener('click',()=>{S.div=clamp(+(S.div-0.1).toFixed(1),1,5);$('divVal').textContent=S.div.toFixed(1);persist();vib(5)});
-$('divPlus').addEventListener('click',()=>{S.div=clamp(+(S.div+0.1).toFixed(1),1,5);$('divVal').textContent=S.div.toFixed(1);persist();vib(5)});
 $('demoBatRange').value=S.demoBat;$('demoBatLabel').textContent=S.demoBat+' %';
 $('demoBatRange').addEventListener('input',e=>{S.demoBat=+e.target.value;$('demoBatLabel').textContent=S.demoBat+' %';persist();renderBattery()});
 $('demoChgSw').checked=S.demoChg;
@@ -962,30 +927,14 @@ setInterval(()=>{
 },20000);
 
 $('installRow').addEventListener('click',()=>openSheet('<h3>Иконка на экране «Домой»</h3><div class="desc">Motus работает как обычное приложение: своя иконка, полный экран.</div><div class="steps-i"><span class="n">1</span><div>Откройте страницу в <b>Bluefy</b> (для Bluetooth) или Safari.</div></div><div class="steps-i"><span class="n">2</span><div>Нажмите <b>«Поделиться»</b>.</div></div><div class="steps-i"><span class="n">3</span><div>Выберите <b>«На экран Домой»</b> → «Добавить».</div></div>'));
-const FIRMWARE=String.raw`import machine, time, struct, bluetooth
-SDA, SCL, LED_PIN, BTN_PIN = 6, 7, 8, 10
-BAT_PIN, CHG_PIN = 3, 4
-DIVIDER = 2.0
-i2c = machine.I2C(0, sda=machine.Pin(SDA), scl=machine.Pin(SCL), freq=400000)
-led = machine.Pin(LED_PIN, machine.Pin.OUT, value=1)
-btn = machine.Pin(BTN_PIN, machine.Pin.IN, machine.Pin.PULL_UP)
-chg = machine.Pin(CHG_PIN, machine.Pin.IN, machine.Pin.PULL_UP)
-adc = machine.ADC(machine.Pin(BAT_PIN)); adc.atten(machine.ADC.ATTN_11DB)
-CURVE = ((4.20,100),(4.10,90),(4.00,80),(3.92,70),(3.85,60),(3.79,50),(3.73,40),(3.68,30),(3.61,20),(3.53,12),(3.45,6),(3.35,2),(3.20,0))
-def bat_volts():
-    s = 0
-    for _ in range(8):
-        s += adc.read_uv(); time.sleep_ms(2)
-    return (s / 8) / 1000000.0 * DIVIDER
-def bat_pct(v):
-    if v >= CURVE[0][0]: return 100
-    for i in range(len(CURVE)-1):
-        v1,p1 = CURVE[i]; v2,p2 = CURVE[i+1]
-        if v >= v2: return int(p2 + (p1-p2)*(v-v2)/(v1-v2))
-    return 0
-# ... полный код прошивки — в файле main.py, который вы заливаете через mpremote`;
+const FIRMWARE=String.raw`# Прошивка мяча уже залита на плату и не требует изменений.
+# Пакеты, которые она отправляет в приложение:
+{"p":971.53,"d":0.001,"t":24.6,"b":971.53}   # давление, дельта, температура, ноль
+{"bat":87,"v":4.02,"chg":0}                  # заряд, напряжение, зарядка (раз в 3 с)
+{"cal":1} / {"cal":0,"b":971.53,"t":24.6}    # служебные, приложение их игнорирует
+# Приложение принимает команду TARE на характеристику beb5483f-...`;
 $('fwRow').addEventListener('click',()=>{
-  openSheet('<h3>Прошивка мяча</h3><div class="desc">Отправляет давление, температуру, ноль и заряд аккумулятора. Делитель: BAT+ → 100 кОм → GPIO3 → 100 кОм → GND. CHRG модуля TP4056 → GPIO4 (опционально).</div><button class="btn pri" id="fwCopy">Скопировать фрагмент</button><pre class="fw" id="fwPre"></pre>');
+  openSheet('<h3>Прошивка мяча</h3><div class="desc">Текущая прошивка совместима с приложением. Перепрошивать плату не нужно.</div><button class="btn pri" id="fwCopy">Скопировать справку</button><pre class="fw" id="fwPre"></pre>');
   $('fwPre').textContent=FIRMWARE;
   $('fwCopy').addEventListener('click',()=>{const done=()=>toast('Скопировано');
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(FIRMWARE).then(done).catch(()=>fb());else fb();
